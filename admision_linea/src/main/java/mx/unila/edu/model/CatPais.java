@@ -32,7 +32,7 @@ public class CatPais  implements java.io.Serializable {
      private String nombre;
      private String descripcion;
      private Date fechaCreacion;
-     private Set<TblUsuario> tblUsuarios = new HashSet<TblUsuario>(0);
+     private Set<TblDireccion> tblDireccions = new HashSet<TblDireccion>(0);
 
     public CatPais() {
     }
@@ -46,11 +46,11 @@ public class CatPais  implements java.io.Serializable {
         this.nombre = nombre;
         this.fechaCreacion = fechaCreacion;
     }
-    public CatPais(String nombre, String descripcion, Date fechaCreacion, Set<TblUsuario> tblUsuarios) {
+    public CatPais(String nombre, String descripcion, Date fechaCreacion, Set<TblDireccion> tblDireccions) {
        this.nombre = nombre;
        this.descripcion = descripcion;
        this.fechaCreacion = fechaCreacion;
-       this.tblUsuarios = tblUsuarios;
+       this.tblDireccions = tblDireccions;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -96,12 +96,12 @@ public class CatPais  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="catPais")
-    public Set<TblUsuario> getTblUsuarios() {
-        return this.tblUsuarios;
+    public Set<TblDireccion> getTblDireccion() {
+        return this.tblDireccions;
     }
     
-    public void setTblUsuarios(Set<TblUsuario> tblUsuarios) {
-        this.tblUsuarios = tblUsuarios;
+    public void setTblDireccion(Set<TblDireccion> tblDireccions) {
+        this.tblDireccions = tblDireccions;
     }
 
 

@@ -24,39 +24,38 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="tbl_usuario",catalog="admision_ead")
 public class TblUsuario  implements java.io.Serializable {
-
+	
+	
 
      /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;
-     private CatEstado catEstado;
-     private CatGradoEstudios catGradoEstudios;
-     private CatPais catPais;
-     private String nombre;
-     private String APaterno;
-     private String AMaterno;
-     private String email;
-     private String curp;
-     private String rfc;
-     private String genero;
-     private Date fechaNacimiento;
-     private String telefonoLocal;
-     private String telefonoCelular;
-     private String universidadOrigen;
-     private String tituloLicenciatura;
-     private boolean activo;
-     private Set<RelUsuarioRol> relUsuarioRols = new HashSet<RelUsuarioRol>(0);
+    private CatGradoEstudios catGradoEstudios;
+    private TblDireccion direccion;
+    private String nombre;
+    private String APaterno;
+    private String AMaterno;
+    private String email;
+    private String curp;
+    private String rfc;
+    private String genero;
+    private Date fechaNacimiento;
+    private String telefonoLocal;
+    private String telefonoCelular;
+    private String universidadOrigen;
+    private String tituloLicenciatura;
+    private boolean activo;
+    private Set<RelUsuarioRol> relUsuarioRols = new HashSet<RelUsuarioRol>(0);
 
     public TblUsuario() {
     }
 
 	
-    public TblUsuario(CatEstado catEstado, CatGradoEstudios catGradoEstudios, CatPais catPais, String nombre, String APaterno, String AMaterno, String email, String curp, String rfc, String genero, Date fechaNacimiento, String telefonoLocal, boolean activo) {
-        this.catEstado = catEstado;
+    public TblUsuario(CatGradoEstudios catGradoEstudios, TblDireccion direccion, String nombre, String APaterno, String AMaterno, String email, String curp, String rfc, String genero, Date fechaNacimiento, String telefonoLocal, boolean activo) {
         this.catGradoEstudios = catGradoEstudios;
-        this.catPais = catPais;
+        this.direccion = direccion;
         this.nombre = nombre;
         this.APaterno = APaterno;
         this.AMaterno = AMaterno;
@@ -68,10 +67,9 @@ public class TblUsuario  implements java.io.Serializable {
         this.telefonoLocal = telefonoLocal;
         this.activo = activo;
     }
-    public TblUsuario(CatEstado catEstado, CatGradoEstudios catGradoEstudios, CatPais catPais, String nombre, String APaterno, String AMaterno, String email, String curp, String rfc, String genero, Date fechaNacimiento, String telefonoLocal, String telefonoCelular, String universidadOrigen, String tituloLicenciatura, boolean activo, Set<RelUsuarioRol> relUsuarioRols) {
-       this.catEstado = catEstado;
+    public TblUsuario(CatGradoEstudios catGradoEstudios, TblDireccion direccion, String nombre, String APaterno, String AMaterno, String email, String curp, String rfc, String genero, Date fechaNacimiento, String telefonoLocal, String telefonoCelular, String universidadOrigen, String tituloLicenciatura, boolean activo, Set<RelUsuarioRol> relUsuarioRols) {
        this.catGradoEstudios = catGradoEstudios;
-       this.catPais = catPais;
+       this.direccion = direccion;
        this.nombre = nombre;
        this.APaterno = APaterno;
        this.AMaterno = AMaterno;
@@ -100,17 +98,8 @@ public class TblUsuario  implements java.io.Serializable {
         this.id = id;
     }
 
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fk_estado_residencia", nullable=false)
-    public CatEstado getCatEstado() {
-        return this.catEstado;
-    }
-    
-    public void setCatEstado(CatEstado catEstado) {
-        this.catEstado = catEstado;
-    }
 
-@ManyToOne(fetch=FetchType.LAZY)
+    @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="fk_grado_estudios", nullable=false)
     public CatGradoEstudios getCatGradoEstudios() {
         return this.catGradoEstudios;
@@ -119,15 +108,15 @@ public class TblUsuario  implements java.io.Serializable {
     public void setCatGradoEstudios(CatGradoEstudios catGradoEstudios) {
         this.catGradoEstudios = catGradoEstudios;
     }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="fk_pais", nullable=false)
-    public CatPais getCatPais() {
-        return this.catPais;
+    
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="fk_direccion", nullable=false)
+    public TblDireccion getDireccion() {
+    	return this.direccion;
     }
     
-    public void setCatPais(CatPais catPais) {
-        this.catPais = catPais;
+    public void setDireccion(TblDireccion direccion) {
+    	this.direccion = direccion;
     }
     
   
