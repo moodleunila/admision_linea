@@ -87,6 +87,33 @@ function validar(){
 		$( "#telefonoLocal").addClass( "is-valid" );
 	}
     
+    if($("#calle").val() == "" || $("#calle").val() == null){
+    	$( "#calle").addClass( "is-invalid" );
+		enviar = false;
+    }
+    else{
+    	$( "#calle").removeClass( "is-invalid" );
+		$( "#calle").addClass( "is-valid" );
+    }
+    
+    if($("#colonia").val() == "" || $("#colonia").val() == null){
+    	$( "#colonia").addClass( "is-invalid" );
+		enviar = false;
+    }
+    else{
+    	$( "#colonia").removeClass( "is-invalid" );
+		$( "#colonia").addClass( "is-valid" );
+    }
+    
+    if($("#codigoPostal").val() == "" || $("#codigoPostal").val() == null){
+    	$( "#codigoPostal").addClass( "is-invalid" );
+		enviar = false;
+    }
+    else{
+    	$( "#codigoPostal").removeClass( "is-invalid" );
+		$( "#codigoPostal").addClass( "is-valid" );
+    }
+    
     if(grado*1 > 3){
     	if($("#universidadOrigen").val() == "" || $("#universidadOrigen").val() == null){
     		$( "#universidadOrigen").addClass( "is-invalid" );
@@ -109,5 +136,7 @@ function validar(){
     
 	if(enviar)
 		$("#solicitud").submit();
+	else
+		$(".error").show("slow");
 }
 

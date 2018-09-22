@@ -261,6 +261,15 @@ public class TblUsuario  implements java.io.Serializable {
     }
 
 
+	@Override
+	public String toString() {
+		return "TblUsuario [id=" + id + ", catGradoEstudios=" + catGradoEstudios + ", direccion=" + direccion
+				+ ", nombre=" + nombre + ", APaterno=" + APaterno + ", AMaterno=" + AMaterno + ", email=" + email
+				+ ", curp=" + curp + ", rfc=" + rfc + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento
+				+ ", telefonoLocal=" + telefonoLocal + ", telefonoCelular=" + telefonoCelular + ", universidadOrigen="
+				+ universidadOrigen + ", tituloLicenciatura=" + tituloLicenciatura + ", activo=" + activo
+				+ ", relUsuarioRols=" + relUsuarioRols + "]";
+	}
 
 
 }
