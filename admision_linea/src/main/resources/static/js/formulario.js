@@ -87,6 +87,15 @@ function validar(){
 		$( "#telefonoLocal").addClass( "is-valid" );
 	}
     
+    if($("#fechaNacimiento").val() == "" || $("#fechaNacimiento").val() == null){
+		$( "#fechaNacimiento").addClass( "is-invalid" );
+		enviar = false;
+	}
+    else{
+		$( "#fechaNacimiento").removeClass( "is-invalid" );
+		$( "#fechaNacimiento").addClass( "is-valid" );
+	}
+    
     if($("#calle").val() == "" || $("#calle").val() == null){
     	$( "#calle").addClass( "is-invalid" );
 		enviar = false;

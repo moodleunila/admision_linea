@@ -155,4 +155,11 @@ public class TblDireccion implements java.io.Serializable{
 	public void setTblUsuarios(Set<TblUsuario> tblUsuarios) {
 	    this.tblUsuarios = tblUsuarios;
 	}
+
+	@Override
+	public String toString() {
+		return "TblDireccion [id=" + id + ", calle=" + calle + ", numeroInterno=" + numeroInterno + ", numeroExterno="
+				+ numeroExterno + ", colonia=" + colonia + ", codigoPostal=" + codigoPostal + ", catEstado=" + catEstado
+				+ ", catPais=" + catPais + ", tblUsuarios=" + tblUsuarios + "]";
+	}
 }
