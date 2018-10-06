@@ -34,51 +34,45 @@
 					      	<p id="nombre">{{user.nombre}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="nombre">Apellido paterno</label> <!-- is-invalid -->
-					      	<p id="nombre">{{user.APaterno}}</p>
+					    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
+					      	<p id="APaterno">{{user.APaterno}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="nombre">Apellido Materno</label> <!-- is-invalid -->
-					      	<p id="nombre">{{user.AMaterno}}</p>
+					    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
+					      	<p id="AMaterno">{{user.AMaterno}}</p>
 					    </div>
 			  		</div>
 				  	<div class="form-row">
 				    	<div class="col-md-4 mb-3">
 					    	<label for="email">Correo electrónico</label> <!-- is-invalid -->
-					      	<p id="nombre">{{user.email}}</p>
+					      	<p id="email">{{user.email}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="curp">*CURP</label> <!-- is-invalid -->
-					    	<p id="nombre">{{user.curp}}</p>
+					    	<label for="curp">CURP</label> <!-- is-invalid -->
+					    	<p id="curp">{{user.curp}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="rfc">*RFC</label> <!-- is-invalid -->
-					    	<p id="nombre">{{user.rfc}}</p>
+					    	<label for="rfc">RFC</label> <!-- is-invalid -->
+					    	<p id="rfc">{{user.rfc}}</p>
 					    </div>
 				  	</div>
 				  	<div class="form-row">
 					    <div class="col-md-4 mb-3">
-					    	<label for="telefonoLocal">*Teléfono</label> <!-- is-invalid -->  	
-					    	<p id="nombre">{{user.CURP}}</p>
+					    	<label for="telefonoLocal">Teléfono</label> <!-- is-invalid -->  	
+					    	<p id="telefonoLocal">{{user.telefonoLocal}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
 				    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
-				    		<p id="nombre">{{user.CURP}}</p>
+				    		<p id="telefonoCelular">{{user.telefonoCelular}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3 centrado">
 				    		<p>*Género</p>
-					    	<div class="form-check">
-						  		<input class="form-check-input" type="radio" name="genero" id="genero1" value="1" checked>
-						  		<label class="form-check-label" for="genero1">
-						    		Femenino
-						  		</label>
-							</div>
-							<div class="form-check">
-							  	<input class="form-check-input" type="radio" name="genero" id="genero2" value="2">
-							  	<label class="form-check-label" for="genero2">
-							    	Masculino
-							  	</label>
-							</div>
+					    	{{#user.genero.equals("1")}}
+					    	<p>Femenino</p>
+					    	{{/user.genero.equals("1")}}
+					    	{{#user.genero == "2"}}
+					    	<p>Masculino</p>
+					    	{{/user.genero == "2"}}
 				    	</div>
 			  		</div>
 		  		</div>
@@ -88,76 +82,34 @@
 			  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="form-row">
 				    	<div class="col-md-6 mb-3">
-					    	<label for="calle">*Calle</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="calle" placeholder="Calle" value="" name="calle">
-					      	<div class="invalid-feedback">
-					        	Por favor captura la calle
-					      	</div>
+					    	<label for="calle">Calle</label> <!-- is-invalid -->
+					      	<p id="calle">{{user.direccion.calle}}</p>
 					    </div>
 					    <div class="col-md-6 mb-3">
-					    	<label for="colonia">*Colonia</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="colonia" placeholder="Colonia" value="" name="colonia">
-					      	<div class="invalid-feedback">
-					        	Por favor captura la colonia
-					      	</div>
+					    	<label for="colonia">Colonia</label> <!-- is-invalid -->
+					      	<p id="colonia">{{user.direccion.colonia}}</p>
 					    </div>
 			  		</div>
 			  		<div class="form-row">
 			  			<div class="col-md-4 mb-3">
-					    	<label for="APaterno">Número interior</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="numeroInterno" placeholder="Número interior" value="" name="numeroInterno">
+					    	<label for="numeroInterno">Número interior</label> <!-- is-invalid -->
+					      	<p id="numeroInterno">{{user.direccion.numeroInterno}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="nombre">Número exterior</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="numeroExterno" placeholder="Número exterior" value="" name="numeroExterno">
+					    	<label for="numeroExterno">Número exterior</label> <!-- is-invalid -->
+					      	<p id="numeroExterno">{{user.direccion.numeroExterno}}</p>
 					    </div>
 					    <div class="col-md-4 mb-3">
-					    	<label for="codigoPostal">*Código postal</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="codigoPostal" placeholder="codigoPostal" value="" name="codigoPostal">
-					      	<div class="invalid-feedback">
-					        	Por favor captura el código postal
-					      	</div>
+					    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
+					      	<p id="codigoPostal">{{user.direccion.codigoPostal}}</p>
 					    </div>
 				    </div>
 				    <div class="form-row">
 				    	<div class="col-md-4 mb-3">
 				    	</div>
 					    <div class="col-md-4 mb-3">
-					    	<p>*Estado de residencia:</p>
-						  	<select class="custom-select" id="catEstado" name="catEstado.id">
-								<option value="9">Ciudad de México</option>
-								<option value="1">Aguascalientes</option>
-								<option value="2">Baja California Norte</option>
-								<option value="3">Baja California Sur</option>
-								<option value="4">Campeche</option>
-								<option value="5">Chiapas</option>
-								<option value="6">Chihuahua</option>
-								<option value="7">Coahuila</option>
-								<option value="8">Colima</option>
-								<option value="10">Durango</option>
-								<option value="11">Guanajuato</option>
-								<option value="12">Guerrero</option>
-								<option value="13">Hidalgo</option>
-								<option value="14">Jalisco</option>
-								<option value="15">Estado de México</option>
-								<option value="16">Michoacán</option>
-								<option value="17">Morelos</option>
-								<option value="18">Nayarit</option>
-								<option value="19">Nuevo León</option>
-								<option value="20">Oaxaca</option>
-								<option value="21">Puebla</option>
-								<option value="22">Querétaro</option>
-								<option value="23">Quintana Roo</option>
-								<option value="24">San Luis Potosí</option>
-								<option value="25">Sinaloa</option>
-								<option value="26">Sonora</option>
-								<option value="27">Tabasco</option>
-								<option value="28">Tamaulipas</option>
-								<option value="29">Tlaxcala</option>
-								<option value="30">Veracruz</option>
-								<option value="31">Yucatán</option>
-								<option value="32">Zacatecas</option>
-					  		</select>
+					    	<p>Estado de residencia:</p>
+						  	<p id="estado">{{user.direccion.catEstado.nombre}}</p>
 				  		</div>
 				  		<div class="col-md-4 mb-3">
 				    	</div>
@@ -171,32 +123,17 @@
 				    	<div class="col-md-4 mb-3">
 				    		<br>
 			    			<div class="input-group mb-3">
-					  			<div class="input-group-prepend">
-						    		<label class="input-group-text" for="catGradoEstudios">*Último grado de estudios</label>
-						  		</div>
-						  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
-									<option value="1">Primaria</option>
-									<option value="2">Secundaria</option>
-									<option value="3">Medio superior</option>
-									<option value="4">Licenciatura</option>
-									<option value="5">Maestría</option>
-									<option value="6">Doctorado</option>
-						  		</select>
+					  			<p>Último grado de estudios:</p>
+						  		<p id="estado">{{user.catGradoEstudios.nombre}}</p>
 							</div>
 				    	</div>
 				    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
-					    	<label for="universidadOrigen">*Universidad de Origen</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="universidadOrigen" placeholder="Universidad de origen" value="" name="universidadOrigen">
-					      	<div class="invalid-feedback">
-					        	Por favor captura el nombre de la universidad de origen
-					      	</div>
+					    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
+					      	<p id="codigoPostal">{{user.universidadOrigen}}</p>
 				    	</div>
 				    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
-				    		<label for="tituloLicenciatura">*Título de licenciatura</label> <!-- is-invalid -->
-					      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" value="" name="tituloLicenciatura">
-					      	<div class="invalid-feedback">
-					        	Por favor captura el título de licencitura
-					      	</div>
+				    		<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
+					      	<p id="codigoPostal">{{user.tituloLicenciatura}}</p>
 					    </div>
 			  		</div>
 			  	</div>
