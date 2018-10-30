@@ -32,15 +32,15 @@ public class CatalogosController {
 	
 	public void llenarFormularioEstados() {
 		List<CatEstado> estados = new ArrayList<CatEstado>(0);
-		estados.add(new CatEstado(1L, "Aguas Calientes", new Date()));
-		estados.add(new CatEstado(2L, "Baja California Norte", new Date()));
-		estados.add(new CatEstado(3L, "Baja California Sur", new Date()));
-		estados.add(new CatEstado(4L, "Campeche", new Date()));
-		estados.add(new CatEstado(5L, "Chiapas", new Date()));
-		estados.add(new CatEstado(6L, "Chihuahua", new Date()));
-		estados.add(new CatEstado(7L, "Coahuila", new Date()));
-		estados.add(new CatEstado(8L, "Colima", new Date()));
-		estados.add(new CatEstado(9L, "Ciudad de México", new Date()));
+		estados.add(new CatEstado(1L, "Ciudad de México", new Date()));
+		estados.add(new CatEstado(2L, "Aguas Calientes", new Date()));
+		estados.add(new CatEstado(3L, "Baja California Norte", new Date()));
+		estados.add(new CatEstado(4L, "Baja California Sur", new Date()));
+		estados.add(new CatEstado(5L, "Campeche", new Date()));
+		estados.add(new CatEstado(6L, "Chiapas", new Date()));
+		estados.add(new CatEstado(7L, "Chihuahua", new Date()));
+		estados.add(new CatEstado(8L, "Coahuila", new Date()));
+		estados.add(new CatEstado(9L, "Colima", new Date()));		
 		estados.add(new CatEstado(10L, "Durango", new Date()));
 		estados.add(new CatEstado(11L, "Guanajuato", new Date()));
 		estados.add(new CatEstado(12L, "Guerrero", new Date()));

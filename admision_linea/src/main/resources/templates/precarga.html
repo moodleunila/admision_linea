@@ -7,153 +7,220 @@
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="js/formulario.js"></script>
+		<script type="text/javascript" src="js/precarga.js"></script>
 		<link rel="stylesheet" href="css/generalidades.css">
 	</head>
 	<body>
-		<div class="container">
-			<h1 class="centrado">Confirmar datos</h1>
-			<hr/>
-			<ul class="nav nav-tabs" id="myTab" role="tablist">
-			  	<li class="nav-item">
-			    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos personales</a>
-			  	</li>
-			  	<li class="nav-item">
-			    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dirección</a>
-			  	</li>
-			  	<li class="nav-item">
-			    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Datos académicos</a>
-			  	</li>
-			</ul>
-			<!-- Datos personales -->
-			<div class="tab-content" id="myTabContent">
-				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-			  		<div class="form-row">
-				    	<div class="col-md-4 mb-3">
-					    	<label for="nombre">Nombre(s)</label> <!-- is-invalid -->
-					      	<p id="nombre">{{user.nombre}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
-					      	<p id="APaterno">{{user.APaterno}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
-					      	<p id="AMaterno">{{user.AMaterno}}</p>
-					    </div>
-			  		</div>
-				  	<div class="form-row">
-				    	<div class="col-md-4 mb-3">
-					    	<label for="email">Correo electrónico</label> <!-- is-invalid -->
-					      	<p id="email">{{user.email}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="curp">CURP</label> <!-- is-invalid -->
-					    	<p id="curp">{{user.curp}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="rfc">RFC</label> <!-- is-invalid -->
-					    	<p id="rfc">{{user.rfc}}</p>
-					    </div>
-				  	</div>
-				  	<div class="form-row">
-					    <div class="col-md-4 mb-3">
-					    	<label for="telefonoLocal">Teléfono</label> <!-- is-invalid -->  	
-					    	<p id="telefonoLocal">{{user.telefonoLocal}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-				    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
-				    		<p id="telefonoCelular">{{user.telefonoCelular}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3 centrado">
-				    		<p>*Género</p>
-					    	{{#user.genero.equals("1")}}
-					    	<p>Femenino</p>
-					    	{{/user.genero.equals("1")}}
-					    	{{#user.genero == "2"}}
-					    	<p>Masculino</p>
-					    	{{/user.genero == "2"}}
-				    	</div>
-			  		</div>
-		  		</div>
-		  		
-		  		
-		  		<!-- Dirección -->
-			  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-					<div class="form-row">
-				    	<div class="col-md-6 mb-3">
-					    	<label for="calle">Calle</label> <!-- is-invalid -->
-					      	<p id="calle">{{user.direccion.calle}}</p>
-					    </div>
-					    <div class="col-md-6 mb-3">
-					    	<label for="colonia">Colonia</label> <!-- is-invalid -->
-					      	<p id="colonia">{{user.direccion.colonia}}</p>
-					    </div>
-			  		</div>
-			  		<div class="form-row">
-			  			<div class="col-md-4 mb-3">
-					    	<label for="numeroInterno">Número interior</label> <!-- is-invalid -->
-					      	<p id="numeroInterno">{{user.direccion.numeroInterno}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="numeroExterno">Número exterior</label> <!-- is-invalid -->
-					      	<p id="numeroExterno">{{user.direccion.numeroExterno}}</p>
-					    </div>
-					    <div class="col-md-4 mb-3">
-					    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
-					      	<p id="codigoPostal">{{user.direccion.codigoPostal}}</p>
-					    </div>
-				    </div>
-				    <div class="form-row">
-				    	<div class="col-md-4 mb-3">
-				    	</div>
-					    <div class="col-md-4 mb-3">
-					    	<p>Estado de residencia:</p>
-						  	<p id="estado">{{user.direccion.catEstado.nombre}}</p>
+		<form id="form-precarga" class="form-precarga" method="post">
+			<div class="container">
+				<h1 class="centrado">Confirmar datos</h1>
+				<hr/>
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+				  	<li class="nav-item">
+				    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos personales</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dirección</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Datos académicos</a>
+				  	</li>
+				</ul>
+				<!-- Datos personales -->
+				<div class="tab-content" id="myTabContent">
+					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				  		<div class="form-row">
+					    	<div class="col-md-4 mb-3">				    		
+							    	<label for="nombre">Nombre(s)</label> <!-- is-invalid -->
+							    	<div class="alert alert-info" role="alert">
+							      		<p id="nombre">{{user.nombre}}</p>
+							      		<input type="hidden" id="nombre-val"  value="{{user.nombre}}" name="nombre">
+						      		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="APaterno">{{user.APaterno}}</p>
+						      		<input type="hidden" id="APaterno-val" value="{{user.APaterno}}" name="APaterno">
+					      		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="AMaterno">{{user.AMaterno}}</p>
+						      		<input type="hidden" id="AMaterno-val" value="{{user.AMaterno}}" name="AMaterno">
+					      		</div>
+						    </div>
 				  		</div>
-				  		<div class="col-md-4 mb-3">
-				    	</div>
+					  	<div class="form-row">
+					    	<div class="col-md-4 mb-3">
+						    	<label for="email">Correo electrónico</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="email">{{user.tblContacto.email}}</p>
+						      		<input type="hidden" id="email-val" value="{{user.tblContacto.email}}" name="email">
+					      		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="curp">CURP</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						    		<p id="curp">{{user.curp}}</p>
+						    		<input type="hidden" id="curp-val" value="{{user.curp}}" name="curp">
+					    		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="rfc">RFC</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						    		<p id="rfc">{{user.rfc}}</p>
+						    		<input type="hidden" id="rfc-val" value="{{user.rfc}}" name="rfc">
+					    		</div>
+						    </div>
+					  	</div>
+					  	<div class="form-row">
+						    <div class="col-md-4 mb-3">
+						    	<label for="telefonoLocal">Teléfono</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						    		<p id="telefonoLocal">{{user.tblContacto.telefonoLocal}}</p>
+						    		<input type="hidden" id="telefonoLocal-val" value="{{user.tblContacto.telefonoLocal}}" name="telefonoLocal">
+					    		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+					    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
+					    		<div class="alert alert-info" role="alert">
+					    			<p id="telefonoCelular">{{user.tblContacto.telefonoCelular}}</p>
+					    			<input type="hidden" id="telefonoCelular-val" name="telefonoCelular" value="{{user.tblContacto.telefonoCelular}}">
+				    			</div>
+						    </div>
+						    <div class="col-md-4 mb-3 centrado">
+					    		<label for="genero">Género</label> <!-- is-invalid -->
+					    		<div class="alert alert-info" role="alert">
+					    			<p id="genero">{{user.genero}}</p>
+					    			<input type="hidden" id="genero-val" name="genero" value="{{user.genero}}">
+				    			</div>			    	
+					    	</div>
+				  		</div>
+				  		<div class="form-row">
+						    <div class="col-md-4 mb-3">
+						    	<label for="telefonoLocal">Fecha de Nacimiento: </label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						    		<p id="fechaNacimiento">{{user.fechaNacimiento}}</p>
+						    		<input type="hidden" id="fechaNacimiento-val" value="{{user.fechaNacimiento}}" name="fechaNacimiento">
+					    		</div>
+						    </div>					    
+				  		</div>
 			  		</div>
-			  	</div>
-			  	
-			  	
-			  	<!-- Datos académicos -->
-			  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-			  		<div class="form-row">
-				    	<div class="col-md-4 mb-3">
-				    		<br>
-			    			<div class="input-group mb-3">
-					  			<p>Último grado de estudios:</p>
-						  		<p id="estado">{{user.catGradoEstudios.nombre}}</p>
-							</div>
-				    	</div>
-				    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
-					    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
-					      	<p id="codigoPostal">{{user.universidadOrigen}}</p>
-				    	</div>
-				    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
-				    		<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
-					      	<p id="codigoPostal">{{user.tituloLicenciatura}}</p>
+			  		
+			  		
+			  		<!-- Dirección -->
+				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="form-row">
+					    	<div class="col-md-6 mb-3">
+						    	<label for="calle">Calle</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="calle">{{user.tblDireccion.calle}}</p>
+						      		<input type="hidden" id="calle-val" value="{{user.tblDireccion.calle}}" name="calle">
+					      		</div>
+						    </div>
+						    <div class="col-md-6 mb-3">
+						    	<label for="colonia">Colonia</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="colonia">{{user.tblDireccion.colonia}}</p>
+						      		<input type="hidden"  id="colonia-val" value="{{user.tblDireccion.colonia}}" name="colonia">
+					      		</div>
+						    </div>
+				  		</div>
+				  		<div class="form-row">
+				  			<div class="col-md-4 mb-3">
+						    	<label for="numeroInterno">Número interior</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="numeroInterno">{{user.tblDireccion.numeroInterno}}</p>
+						      		<input type="hidden" id="numeroInterno-val" value="{{user.tblDireccion.numeroInterno}}" name="numeroInterno">
+					      		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="numeroExterno">Número exterior</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="numeroExterno">{{user.tblDireccion.numeroExterno}}</p>
+						      		<input type="hidden" id="numeroExterno-val" value="{{user.tblDireccion.numeroExterno}}" name="numeroExterno">
+					      		</div>
+						    </div>
+						    <div class="col-md-4 mb-3">
+						    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="codigoPostal">{{user.tblDireccion.codigoPostal}}</p>
+						      		<input type="hidden" id="codigoPostal-val" value="{{user.tblDireccion.codigoPostal}}" name="codigoPostal">
+					      		</div>
+						    </div>
 					    </div>
-			  		</div>
+					    <div class="form-row">
+					    	<div class="col-md-4 mb-3">				    	
+					    		<p>País de residencia:</p>
+					    		<div class="alert alert-info" role="alert">
+							  		<p id="pais">{{user.tblDireccion.catPais.nombre}}</p>
+							  		<input type="hidden" id="pais-val" value="{{user.tblDireccion.catPais.id}}" name="catPais.id">
+						  		</div>
+					    	</div>
+						    <div class="col-md-4 mb-3">
+						    	<div id="estado-republica-mexicana">
+							    	<p>Estado de residencia:</p>
+							    	<div class="alert alert-info" role="alert">
+								  		<p id="estado">{{user.tblDireccion.catEstado.nombre}}</p>
+								  		<input type="hidden" id="estado-val" value="{{user.tblDireccion.catEstado.id}}" name="catEstado.id">
+							  		</div>
+						  		</div>
+						  		<input type="hidden" id="value-ciudad-internacional" value="{{user.tblDireccion.ciudadInternacional}}" name="ciudadInternacional">
+						  		<div class="oculto" id="ciudadInternacional">
+						  			<p>Ciudad o provincia:</p>
+							    	<div class="alert alert-info" role="alert">
+								  		<p id="estado">{{user.tblDireccion.ciudadInternacional}}</p>								  		
+							  		</div>
+						  		</div>
+					  		</div>
+					  		<div class="col-md-4 mb-3">
+					    	</div>
+				  		</div>
+				  	</div>
+				  	
+				  	<input type="hidden" id="value-universidad-origen" value="{{user.tblFormacionAcademica.universidadOrigen}}">
+			    	<input type="hidden" id="value-titulo-licenciatura" value="{{user.tblFormacionAcademica.tituloLicenciatura}}">
+				  	<!-- Datos académicos -->
+				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				  		<div class="form-row">
+					    	<div class="col-md-4 mb-3">			    			
+					  			<label for="ultimoGrado">Último grado de estudios</label> <!-- is-invalid -->
+					  			<div class="alert alert-info" role="alert">
+						  			<p id="ultimoGrado">{{user.tblFormacionAcademica.catGradoEstudios.nombre}}</p>
+						  			<input type="hidden" id="ultimoGrado-val" value="{{user.tblFormacionAcademica.catGradoEstudios.id}}" name="catGradoEstudios.id">
+					  			</div>							
+					    	</div>
+					    	
+					    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
+						    	<label for="universidadOrigen">Universidad de origen</label> <!-- is-invalid -->
+						    	<div class="alert alert-info" role="alert">
+						      		<p id="universidadOrigen">{{user.tblFormacionAcademica.universidadOrigen}}</p>
+						      		<input type="hidden" id="universidadOrigen-val" value="{{user.tblFormacionAcademica.universidadOrigen}}" name="universidadOrigen">
+					      		</div>
+					    	</div>
+					    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
+					    		<label for="tituloLicenciatura">Código postal</label> <!-- is-invalid -->
+					    		<div class="alert alert-info" role="alert">
+						      		<p id="tituloLicenciatura">{{user.tblFormacionAcademica.tituloLicenciatura}}</p>
+						      		<input type="hidden" id="tituloLicenciatura-val" value="{{user.tblFormacionAcademica.tituloLicenciatura}}" name="tituloLicenciatura">
+					      		</div>
+						    </div>
+				  		</div>
+				  		<div class="form-row">	
+				  			<div class="col-md-4 mb-3">
+				  			</div>		  			
+				    		<div class="col-md-4 mb-3 centrado">
+				    			<button type="button" class="btn btn-primary" onclick="return editar();">Editar</button>
+				    			<button type="button" class="btn btn-success" onclick="return almacenar();">Confirmar</button>
+					    	</div>
+					    	<div class="col-md-4 mb-3">
+				  			</div>
+				  		</div>	
+				  	</div>			  			  	
 			  	</div>
-			  	<div class="form-row">
-			  		<div class="col-md-4 mb-3">
-			  		</div>
-			    	<div class="col-md-4 mb-3 centrado">
-			    		<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>
-				    </div>
-				    <div class="col-md-4 mb-3">
-			  		</div>
-			  	</div>
-			  	<div class="form-row error" style="display: none;">
-			    	<div class="col-md-12 mb-3 centrado">
-			    		<div class="alert alert-danger" role="alert">
-  							Existen errores en los campos
-						</div>
-				    </div>
-			  	</div>
-		  	</div>
-		</div>
+			</div>
+		</form>
 	</body>
 </html>

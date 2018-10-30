@@ -15,6 +15,17 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#catPais").on("change", function(){
+		var paisSeleccionado = $("#catPais option:selected").val();
+		if(paisSeleccionado*1 > 1){
+			$("#listado-estados").hide("slow");
+			$("#ciudad-internacional").show("slow");
+		}
+		else{
+			$("#listado-estados").show("slow");
+			$("#ciudad-internacional").hide("slow");
+		}
+	});
 	
 });
 
@@ -22,6 +33,7 @@ function validar(){
 	
 	var enviar = true;
 	var grado = $("#catGradoEstudios option:selected").val();
+	var paisSeleccionado = $("#catPais option:selected").val();
 	
 	if($("#nombre").val() == "" || $("#nombre").val() == null){
 		$( "#nombre").addClass( "is-invalid" );
@@ -141,6 +153,18 @@ function validar(){
     		$( "#tituloLicenciatura").removeClass( "is-invalid" );
     		$( "#tituloLicenciatura").addClass( "is-valid" );
     	}
+    }
+    
+    if(paisSeleccionado*1 > 1){    	
+    	if($("#ciudad").val() == "" || $("#ciudad").val() == null){    		
+    		$("#ciudad").addClass("is-invalid");
+    		enviar = false;
+    	}
+    	else{
+    		$( "#ciudad").removeClass( "is-invalid" );
+    		$( "#ciudad").addClass( "is-valid" );
+    	}
+    		
     }
     
 	if(enviar)

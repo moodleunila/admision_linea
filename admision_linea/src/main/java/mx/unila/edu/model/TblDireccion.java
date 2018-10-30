@@ -1,10 +1,8 @@
 package mx.unila.edu.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,11 +35,13 @@ public class TblDireccion implements java.io.Serializable {
 	
 	private CatPais catPais;
 	
+	private String ciudadInternacional;
+	
 	private Set<TblUsuario> tblUsuarios = new HashSet<TblUsuario>(0);
 	
 
 	public TblDireccion(Long id, String calle, String numeroInterno, String numeroExterno, String colonia,
-			String codigoPostal, CatEstado catEstado, CatPais catPais) {
+			String codigoPostal, CatEstado catEstado, CatPais catPais, String ciudadInternacional) {
 		super();
 		this.id = id;
 		this.calle = calle;
@@ -51,10 +51,11 @@ public class TblDireccion implements java.io.Serializable {
 		this.codigoPostal = codigoPostal;
 		this.catEstado = catEstado;
 		this.catPais = catPais;
+		this.ciudadInternacional = ciudadInternacional;
 	}
 
 	public TblDireccion(Long id, String calle, String colonia, String codigoPostal, CatEstado catEstado,
-			CatPais catPais, Set<TblUsuario> usuarios) {
+			CatPais catPais, String ciudadInternacional, Set<TblUsuario> usuarios) {
 		super();
 		this.id = id;
 		this.calle = calle;
@@ -62,6 +63,7 @@ public class TblDireccion implements java.io.Serializable {
 		this.codigoPostal = codigoPostal;
 		this.catEstado = catEstado;
 		this.catPais = catPais;
+		this.ciudadInternacional = ciudadInternacional;
 		this.tblUsuarios = usuarios;
 	}
 
@@ -137,13 +139,22 @@ public class TblDireccion implements java.io.Serializable {
 		this.colonia = colonia;
 	}
 
-	@Column(name = "codigoPostal", nullable = false)
+	@Column(name = "codigo_postal", nullable = false)
 	public String getCodigoPostal() {
 		return codigoPostal;
 	}
 
 	public void setCodigoPostal(String codigoPostal) {
 		this.codigoPostal = codigoPostal;
+	}
+	
+	@Column(name = "ciudad_internacional")
+	public String getCiudadInternacional() {
+		return ciudadInternacional;
+	}
+
+	public void setCiudadInternacional(String ciudadInternacional) {
+		this.ciudadInternacional = ciudadInternacional;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblDireccion")

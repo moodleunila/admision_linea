@@ -3,6 +3,8 @@ package mx.unila.edu.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -100,7 +102,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_tbl_contacto", nullable = false)
 	public TblContacto getTblContacto() {
 		return this.tblContacto;
@@ -110,7 +112,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblContacto = tblContacto;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_tbl_direccion", nullable = false)
 	public TblDireccion getTblDireccion() {
 		return this.tblDireccion;
@@ -120,7 +122,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblDireccion = tblDireccion;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_tbl_formacion_academica", nullable = false)
 	public TblFormacionAcademica getTblFormacionAcademica() {
 		return this.tblFormacionAcademica;
@@ -211,4 +213,12 @@ public class TblUsuario implements java.io.Serializable {
 	public void setRelUsuarioRols(Set<RelUsuarioRol> relUsuarioRols) {
 		this.relUsuarioRols = relUsuarioRols;
 	}
+
+	@Override
+	public String toString() {
+		return "TblUsuario [id=" + id + ", nombre=" + nombre + ", APaterno=" + APaterno + ", AMaterno=" + AMaterno
+				+ ", curp=" + curp + ", rfc=" + rfc + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento
+				+ ", activo=" + activo + ", tblDireccion=" + tblDireccion + ", tblContacto=" + tblContacto
+				+ ", tblFormacionAcademica=" + tblFormacionAcademica + ", relUsuarioRols=" + relUsuarioRols + "]";
+	}	
 }
