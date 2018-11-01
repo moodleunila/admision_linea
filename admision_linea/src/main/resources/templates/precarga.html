@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8"/>
 	    <title>Universidad Latina - Educación en línea - Solicitud</title>
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/precarga.js"></script>
-		<link rel="stylesheet" href="css/generalidades.css">
+		<link rel="stylesheet" href="css/generalidades.css"/>
 	</head>
 	<body>
 		<form id="form-precarga" class="form-precarga" method="post">
@@ -17,13 +17,13 @@
 				<hr/>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  	<li class="nav-item">
-				    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Datos personales</a>
+				    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">1. Datos personales</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Dirección</a>
+				    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">2. Dirección</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Datos académicos</a>
+				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">3. Datos académicos</a>
 				  	</li>
 				</ul>
 				<!-- Datos personales -->
@@ -33,22 +33,22 @@
 					    	<div class="col-md-4 mb-3">				    		
 							    	<label for="nombre">Nombre(s)</label> <!-- is-invalid -->
 							    	<div class="alert alert-info" role="alert">
-							      		<p id="nombre">{{user.nombre}}</p>
-							      		<input type="hidden" id="nombre-val"  value="{{user.nombre}}" name="nombre">
+							      		<p th:text="${user.nombre}"></p>
+							      		<input type="hidden" id="nombre-val" th:value="${user.nombre}" name="nombre"/>
 						      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="APaterno">{{user.APaterno}}</p>
-						      		<input type="hidden" id="APaterno-val" value="{{user.APaterno}}" name="APaterno">
+						      		<p id="APaterno" th:text="${user.APaterno}"></p>
+						      		<input type="hidden" id="APaterno-val" th:value="${user.APaterno}" name="APaterno"/>
 					      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="AMaterno">{{user.AMaterno}}</p>
-						      		<input type="hidden" id="AMaterno-val" value="{{user.AMaterno}}" name="AMaterno">
+						      		<p id="AMaterno" th:text="${user.AMaterno}"></p>
+						      		<input type="hidden" id="AMaterno-val" th:value="${user.AMaterno}" name="AMaterno"/>
 					      		</div>
 						    </div>
 				  		</div>
@@ -56,22 +56,22 @@
 					    	<div class="col-md-4 mb-3">
 						    	<label for="email">Correo electrónico</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="email">{{user.tblContacto.email}}</p>
-						      		<input type="hidden" id="email-val" value="{{user.tblContacto.email}}" name="email">
+						      		<p id="email" th:text="${user.tblContacto.email}"></p>
+						      		<input type="hidden" id="email-val" th:value="${user.tblContacto.email}" name="email"/>
 					      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="curp">CURP</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						    		<p id="curp">{{user.curp}}</p>
-						    		<input type="hidden" id="curp-val" value="{{user.curp}}" name="curp">
+						    		<p id="curp" th:text="${user.curp}"></p>
+						    		<input type="hidden" id="curp-val" th:value="${user.curp}" name="curp"/>
 					    		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="rfc">RFC</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						    		<p id="rfc">{{user.rfc}}</p>
-						    		<input type="hidden" id="rfc-val" value="{{user.rfc}}" name="rfc">
+						    		<p id="rfc" th:text="${user.rfc}"></p>
+						    		<input type="hidden" id="rfc-val" th:value="${user.rfc}" name="rfc"/>
 					    		</div>
 						    </div>
 					  	</div>
@@ -79,22 +79,22 @@
 						    <div class="col-md-4 mb-3">
 						    	<label for="telefonoLocal">Teléfono</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						    		<p id="telefonoLocal">{{user.tblContacto.telefonoLocal}}</p>
-						    		<input type="hidden" id="telefonoLocal-val" value="{{user.tblContacto.telefonoLocal}}" name="telefonoLocal">
+						    		<p id="telefonoLocal" th:text="${user.tblContacto.telefonoLocal}"></p>
+						    		<input type="hidden" id="telefonoLocal-val" th:value="${user.tblContacto.telefonoLocal}" name="telefonoLocal"/>
 					    		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 					    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
 					    		<div class="alert alert-info" role="alert">
-					    			<p id="telefonoCelular">{{user.tblContacto.telefonoCelular}}</p>
-					    			<input type="hidden" id="telefonoCelular-val" name="telefonoCelular" value="{{user.tblContacto.telefonoCelular}}">
+					    			<p id="telefonoCelular" th:text="${user.tblContacto.telefonoCelular}"></p>
+					    			<input type="hidden" id="telefonoCelular-val" name="telefonoCelular" th:value="${user.tblContacto.telefonoCelular}"/>
 				    			</div>
 						    </div>
 						    <div class="col-md-4 mb-3 centrado">
 					    		<label for="genero">Género</label> <!-- is-invalid -->
 					    		<div class="alert alert-info" role="alert">
-					    			<p id="genero">{{user.genero}}</p>
-					    			<input type="hidden" id="genero-val" name="genero" value="{{user.genero}}">
+					    			<p id="genero" th:text="${user.genero}"></p>
+					    			<input type="hidden" id="genero-val" name="genero" th:value="${user.genero}"/>
 				    			</div>			    	
 					    	</div>
 				  		</div>
@@ -102,8 +102,8 @@
 						    <div class="col-md-4 mb-3">
 						    	<label for="telefonoLocal">Fecha de Nacimiento: </label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						    		<p id="fechaNacimiento">{{user.fechaNacimiento}}</p>
-						    		<input type="hidden" id="fechaNacimiento-val" value="{{user.fechaNacimiento}}" name="fechaNacimiento">
+						    		<p id="fechaNacimiento" th:text="${user.fechaNacimiento}"></p>
+						    		<input type="hidden" id="fechaNacimiento-val" th:value="${user.fechaNacimiento}" name="fechaNacimiento"/>
 					    		</div>
 						    </div>					    
 				  		</div>
@@ -116,15 +116,15 @@
 					    	<div class="col-md-6 mb-3">
 						    	<label for="calle">Calle</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="calle">{{user.tblDireccion.calle}}</p>
-						      		<input type="hidden" id="calle-val" value="{{user.tblDireccion.calle}}" name="calle">
+						      		<p id="calle" th:text="${user.tblDireccion.calle}"></p>
+						      		<input type="hidden" id="calle-val" th:value="${user.tblDireccion.calle}" name="calle"/>
 					      		</div>
 						    </div>
 						    <div class="col-md-6 mb-3">
 						    	<label for="colonia">Colonia</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="colonia">{{user.tblDireccion.colonia}}</p>
-						      		<input type="hidden"  id="colonia-val" value="{{user.tblDireccion.colonia}}" name="colonia">
+						      		<p id="colonia" th:text="${user.tblDireccion.colonia}"></p>
+						      		<input type="hidden"  id="colonia-val" th:value="${user.tblDireccion.colonia}" name="colonia"/>
 					      		</div>
 						    </div>
 				  		</div>
@@ -132,22 +132,22 @@
 				  			<div class="col-md-4 mb-3">
 						    	<label for="numeroInterno">Número interior</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="numeroInterno">{{user.tblDireccion.numeroInterno}}</p>
-						      		<input type="hidden" id="numeroInterno-val" value="{{user.tblDireccion.numeroInterno}}" name="numeroInterno">
+						      		<p id="numeroInterno" th:text="${user.tblDireccion.numeroInterno}"></p>
+						      		<input type="hidden" id="numeroInterno-val" th:value="${user.tblDireccion.numeroInterno}" name="numeroInterno"/>
 					      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="numeroExterno">Número exterior</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="numeroExterno">{{user.tblDireccion.numeroExterno}}</p>
-						      		<input type="hidden" id="numeroExterno-val" value="{{user.tblDireccion.numeroExterno}}" name="numeroExterno">
+						      		<p id="numeroExterno" th:text="${user.tblDireccion.numeroExterno}"></p>
+						      		<input type="hidden" id="numeroExterno-val" th:value="${user.tblDireccion.numeroExterno}" name="numeroExterno"/>
 					      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
 						    	<label for="codigoPostal">Código postal</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="codigoPostal">{{user.tblDireccion.codigoPostal}}</p>
-						      		<input type="hidden" id="codigoPostal-val" value="{{user.tblDireccion.codigoPostal}}" name="codigoPostal">
+						      		<p id="codigoPostal" th:text="${user.tblDireccion.codigoPostal}"></p>
+						      		<input type="hidden" id="codigoPostal-val" th:value="${user.tblDireccion.codigoPostal}" name="codigoPostal"/>
 					      		</div>
 						    </div>
 					    </div>
@@ -155,23 +155,23 @@
 					    	<div class="col-md-4 mb-3">				    	
 					    		<p>País de residencia:</p>
 					    		<div class="alert alert-info" role="alert">
-							  		<p id="pais">{{user.tblDireccion.catPais.nombre}}</p>
-							  		<input type="hidden" id="pais-val" value="{{user.tblDireccion.catPais.id}}" name="catPais.id">
+							  		<p id="pais" th:text="${user.tblDireccion.catPais.nombre}"></p>
+							  		<input type="hidden" id="pais-val" th:value="${user.tblDireccion.catPais.id}" name="catPais.id"/>
 						  		</div>
 					    	</div>
 						    <div class="col-md-4 mb-3">
 						    	<div id="estado-republica-mexicana">
 							    	<p>Estado de residencia:</p>
 							    	<div class="alert alert-info" role="alert">
-								  		<p id="estado">{{user.tblDireccion.catEstado.nombre}}</p>
-								  		<input type="hidden" id="estado-val" value="{{user.tblDireccion.catEstado.id}}" name="catEstado.id">
+								  		<p id="estado" th:text="${user.tblDireccion.catEstado.nombre}"></p>
+								  		<input type="hidden" id="estado-val" th:value="${user.tblDireccion.catEstado.id}" name="catEstado.id"/>
 							  		</div>
 						  		</div>
-						  		<input type="hidden" id="value-ciudad-internacional" value="{{user.tblDireccion.ciudadInternacional}}" name="ciudadInternacional">
+						  		<input type="hidden" id="value-ciudad-internacional" th:value="${user.tblDireccion.ciudadInternacional}" name="ciudadInternacional"/>
 						  		<div class="oculto" id="ciudadInternacional">
 						  			<p>Ciudad o provincia:</p>
 							    	<div class="alert alert-info" role="alert">
-								  		<p id="estado">{{user.tblDireccion.ciudadInternacional}}</p>								  		
+								  		<p id="estado" th:text="${user.tblDireccion.ciudadInternacional}"></p>								  		
 							  		</div>
 						  		</div>
 					  		</div>
@@ -180,31 +180,31 @@
 				  		</div>
 				  	</div>
 				  	
-				  	<input type="hidden" id="value-universidad-origen" value="{{user.tblFormacionAcademica.universidadOrigen}}">
-			    	<input type="hidden" id="value-titulo-licenciatura" value="{{user.tblFormacionAcademica.tituloLicenciatura}}">
+				  	<input type="hidden" id="value-universidad-origen" th:value="${user.tblFormacionAcademica.universidadOrigen}"/>
+			    	<input type="hidden" id="value-titulo-licenciatura" th:value="${user.tblFormacionAcademica.tituloLicenciatura}"/>
 				  	<!-- Datos académicos -->
 				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 				  		<div class="form-row">
 					    	<div class="col-md-4 mb-3">			    			
 					  			<label for="ultimoGrado">Último grado de estudios</label> <!-- is-invalid -->
 					  			<div class="alert alert-info" role="alert">
-						  			<p id="ultimoGrado">{{user.tblFormacionAcademica.catGradoEstudios.nombre}}</p>
-						  			<input type="hidden" id="ultimoGrado-val" value="{{user.tblFormacionAcademica.catGradoEstudios.id}}" name="catGradoEstudios.id">
+						  			<p id="ultimoGrado" th:text="${user.tblFormacionAcademica.catGradoEstudios.nombre}"></p>
+						  			<input type="hidden" id="ultimoGrado-val" th:value="${user.tblFormacionAcademica.catGradoEstudios.id}" name="catGradoEstudios.id"/>
 					  			</div>							
 					    	</div>
 					    	
 					    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
 						    	<label for="universidadOrigen">Universidad de origen</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
-						      		<p id="universidadOrigen">{{user.tblFormacionAcademica.universidadOrigen}}</p>
-						      		<input type="hidden" id="universidadOrigen-val" value="{{user.tblFormacionAcademica.universidadOrigen}}" name="universidadOrigen">
+						      		<p id="universidadOrigen" th:text="${user.tblFormacionAcademica.universidadOrigen}"></p>
+						      		<input type="hidden" id="universidadOrigen-val" th:value="${user.tblFormacionAcademica.universidadOrigen}" name="universidadOrigen"/>
 					      		</div>
 					    	</div>
 					    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
 					    		<label for="tituloLicenciatura">Código postal</label> <!-- is-invalid -->
 					    		<div class="alert alert-info" role="alert">
-						      		<p id="tituloLicenciatura">{{user.tblFormacionAcademica.tituloLicenciatura}}</p>
-						      		<input type="hidden" id="tituloLicenciatura-val" value="{{user.tblFormacionAcademica.tituloLicenciatura}}" name="tituloLicenciatura">
+						      		<p id="tituloLicenciatura" th:text="${user.tblFormacionAcademica.tituloLicenciatura}"></p>
+						      		<input type="hidden" id="tituloLicenciatura-val" th:value="${user.tblFormacionAcademica.tituloLicenciatura}" name="tituloLicenciatura"/>
 					      		</div>
 						    </div>
 				  		</div>

@@ -33,7 +33,8 @@ public class AdmisionController {
 	public String editar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {
 		user = this.asignarValores(user, direction, contacto, academica);
 		model = this.llenarDatosFormulario(model);
-		return "solicitud";
+		model.addAttribute("user", user);
+		return "editar-solicitud";
 	}
 	
 	@RequestMapping("/almacenar")
@@ -45,9 +46,8 @@ public class AdmisionController {
 	}
 	
 	@RequestMapping("/")
-	public String fomulario(Model model, TblUsuario user) {
+	public String fomulario(Model model) {
 		model = this.llenarDatosFormulario(model);		
-		model.addAttribute("user", user);
 		return "solicitud";
 	}
 	

@@ -1,5 +1,4 @@
-$(document).ready(function() {
-	
+$(document).ready(function() {	
 	$("#catGradoEstudios").on("change", function(){
 		var grado = $("#catGradoEstudios option:selected").val();
 		switch (grado*1){
@@ -14,10 +13,9 @@ $(document).ready(function() {
 				$("#titulo-licenciatura").hide("slow");
 		}
 	});
-	
-	$("#catPais").on("change", function(){
-		var paisSeleccionado = $("#catPais option:selected").val();
-		if(paisSeleccionado*1 > 1){
+		
+	$("#catPais").on("change", function(){		
+		if($("#catPais option:selected").val()*1 > 1){
 			$("#listado-estados").hide("slow");
 			$("#ciudad-internacional").show("slow");
 		}
@@ -26,7 +24,16 @@ $(document).ready(function() {
 			$("#ciudad-internacional").hide("slow");
 		}
 	});
+		
+	if($("#catPais option:selected").val() * 1 > 1){
+		$("#listado-estados").hide();
+		$("#ciudad-internacional").show();
+	}
 	
+	if($("#catGradoEstudios option:selected").val() * 1 > 3){
+		$("#universidad-origen").show();
+		$("#titulo-licenciatura").show();
+	}
 });
 
 function validar(){
