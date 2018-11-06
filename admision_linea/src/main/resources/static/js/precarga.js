@@ -16,12 +16,12 @@ $(document).ready(function() {
 });
 
 function editar(){
-	$("#form-precarga").attr("action","/editar");
+	$("#bandera").attr("value","0");
 	$("#form-precarga").submit();
 }
 
 function almacenar(){
-	$("#form-precarga").attr("action","/almacenar");
+	$("#bandera").attr("value","1");
 	$("#form-precarga").submit();
 }
 

@@ -12,9 +12,11 @@ import org.springframework.stereotype.Controller;
 import mx.unila.edu.CatEstadoRepository;
 import mx.unila.edu.CatGradoEstudiosRepository;
 import mx.unila.edu.CatPaisRepository;
+import mx.unila.edu.CatRolRepository;
 import mx.unila.edu.model.CatEstado;
 import mx.unila.edu.model.CatGradoEstudios;
 import mx.unila.edu.model.CatPais;
+import mx.unila.edu.model.CatRol;
 
 @Controller
 public class CatalogosController {
@@ -22,15 +24,17 @@ public class CatalogosController {
 	@Autowired CatEstadoRepository estadoRepository;
 	@Autowired CatGradoEstudiosRepository gradoRepository;
 	@Autowired CatPaisRepository paisRepository;
+	@Autowired CatRolRepository rolRepository;
 	
 	@PostConstruct
 	public void init() {
 		this.llenarFormularioEstados();
 		this.llenarFormularioGradoEstudios();
 		this.llenarFormularioPais();
+		this.llenarCatalogoRoles();
 	}
 	
-	public void llenarFormularioEstados() {
+	private void llenarFormularioEstados() {
 		List<CatEstado> estados = new ArrayList<CatEstado>(0);
 		estados.add(new CatEstado(1L, "Ciudad de México", new Date()));
 		estados.add(new CatEstado(2L, "Aguas Calientes", new Date()));
@@ -67,7 +71,7 @@ public class CatalogosController {
 		estadoRepository.save(estados);
 	}
 	
-	public void llenarFormularioGradoEstudios() {
+	private void llenarFormularioGradoEstudios() {
 		List<CatGradoEstudios> gradoEstudios = new ArrayList<CatGradoEstudios>(0);
 		gradoEstudios.add(new CatGradoEstudios("Primaria", true));
 		gradoEstudios.add(new CatGradoEstudios("Secundaria", true));
@@ -79,7 +83,21 @@ public class CatalogosController {
 		
 	}
 	
-	public void llenarFormularioPais() {
+	
+	private void llenarCatalogoRoles() {
+		List<CatRol> roles = new ArrayList<CatRol>(0);
+		roles.add(new CatRol("Administrador", new Date(), true));
+		roles.add(new CatRol("Promotor", new Date(), true));
+		roles.add(new CatRol("Ejecutivo", new Date(), true));
+		roles.add(new CatRol("Solicitante", new Date(), true));//Estatus inicial de proceso Solicitud y carga de archivos
+		roles.add(new CatRol("Aspirante", new Date(), true));//Estatus secundario, una vez validados los documentos
+		roles.add(new CatRol("alumno", new Date(), true));//Estatus tercero, una vez hecho el pago		
+		rolRepository.save(roles);
+	}
+	
+	
+	
+	private void llenarFormularioPais() {
 		List<CatPais> paises = new ArrayList<CatPais>(0);
 		paises.add(new CatPais("México", new Date()));
 		paises.add(new CatPais("Albania", new Date()));

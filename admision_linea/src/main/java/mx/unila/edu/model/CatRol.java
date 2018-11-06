@@ -35,7 +35,7 @@ public class CatRol implements java.io.Serializable {
 	
 
 	public CatRol() {
-	}
+	}	
 
 	public CatRol(String nombre, Date fechaCreacion, boolean activo) {
 		this.nombre = nombre;

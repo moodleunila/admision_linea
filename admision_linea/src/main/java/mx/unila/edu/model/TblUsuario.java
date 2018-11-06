@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 @Entity
 @Table(name = "tbl_usuario", catalog = "admision_ead")
 public class TblUsuario implements java.io.Serializable {
@@ -30,6 +32,10 @@ public class TblUsuario implements java.io.Serializable {
 	private String APaterno;
 	
 	private String AMaterno;
+	
+	private String username;
+	
+	private String password; 
 	
 	private String curp;
 	
@@ -55,7 +61,7 @@ public class TblUsuario implements java.io.Serializable {
 
 	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
 			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			TblFormacionAcademica tblFormacionAcademica) {
+			TblFormacionAcademica tblFormacionAcademica, String username, String password) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -69,11 +75,13 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblDireccion = tblDireccion;
 		this.tblContacto = tblcontacto;
 		this.tblFormacionAcademica = tblFormacionAcademica;
+		this.username = username;
+		this.password = password;
 	}
 
 	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
 			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			TblFormacionAcademica tblFormacionAcademica, Set<RelUsuarioRol> relUsuarioRols) {
+			TblFormacionAcademica tblFormacionAcademica , String username, String password, Set<RelUsuarioRol> relUsuarioRols) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -88,6 +96,8 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblContacto = tblcontacto;
 		this.tblFormacionAcademica = tblFormacionAcademica;
 		this.relUsuarioRols = relUsuarioRols;
+		this.username = username;
+		this.password = password;
 	}
 
 	@Id
@@ -140,6 +150,7 @@ public class TblUsuario implements java.io.Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 
 	@Column(name = "a_paterno", nullable = false)
 	public String getAPaterno() {
@@ -157,6 +168,24 @@ public class TblUsuario implements java.io.Serializable {
 
 	public void setAMaterno(String AMaterno) {
 		this.AMaterno = AMaterno;
+	}
+	
+	@Column(name = "username", nullable = false)
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	@Column(name = "password", nullable = false)
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	@Column(name = "curp", nullable = false)
@@ -221,4 +250,10 @@ public class TblUsuario implements java.io.Serializable {
 				+ ", activo=" + activo + ", tblDireccion=" + tblDireccion + ", tblContacto=" + tblContacto
 				+ ", tblFormacionAcademica=" + tblFormacionAcademica + ", relUsuarioRols=" + relUsuarioRols + "]";
 	}	
+	
+	public void generarUsuario() {
+		this.username = this.rfc;
+		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		
+		this.password = passwordEncoder.encode(this.rfc);
+	}
 }

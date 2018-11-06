@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="css/generalidades.css"/>
 	</head>
 	<body>
-		<form id="form-precarga" class="form-precarga" method="post">
+		<form id="form-precarga" class="form-precarga" method="post" th:action="@{/distribuir}" >
 			<div class="container">
 				<h1 class="centrado">Confirmar datos</h1>
 				<hr/>
@@ -208,6 +208,7 @@
 					      		</div>
 						    </div>
 				  		</div>
+				  		<input type="hidden" id="bandera" class="bandera" name="bandera"/>
 				  		<div class="form-row">	
 				  			<div class="col-md-4 mb-3">
 				  			</div>		  			
@@ -220,7 +221,7 @@
 				  		</div>	
 				  	</div>			  			  	
 			  	</div>
-			</div>
+			</div>			
 		</form>
 	</body>
 </html>
