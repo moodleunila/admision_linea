@@ -5,17 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import mx.unila.edu.CatEstadoRepository;
-import mx.unila.edu.CatGradoEstudiosRepository;
-import mx.unila.edu.CatPaisRepository;
-import mx.unila.edu.CatRolRepository;
-import mx.unila.edu.RelUsuarioRolRepository;
-import mx.unila.edu.TblUsuarioRepository;
 import mx.unila.edu.model.RelUsuarioRol;
 import mx.unila.edu.model.TblContacto;
 import mx.unila.edu.model.TblDireccion;
 import mx.unila.edu.model.TblFormacionAcademica;
 import mx.unila.edu.model.TblUsuario;
+import mx.unila.edu.repositories.CatEstadoRepository;
+import mx.unila.edu.repositories.CatGradoEstudiosRepository;
+import mx.unila.edu.repositories.CatPaisRepository;
+import mx.unila.edu.repositories.CatRolRepository;
+import mx.unila.edu.repositories.RelUsuarioRolRepository;
+import mx.unila.edu.repositories.TblUsuarioRepository;
 
 @Controller
 public class AdmisionController {

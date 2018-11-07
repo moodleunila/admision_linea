@@ -1,4 +1,4 @@
-package mx.unila.edu.controller;
+package mx.unila.edu.catalogs;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,14 +9,18 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import mx.unila.edu.CatEstadoRepository;
-import mx.unila.edu.CatGradoEstudiosRepository;
-import mx.unila.edu.CatPaisRepository;
-import mx.unila.edu.CatRolRepository;
 import mx.unila.edu.model.CatEstado;
 import mx.unila.edu.model.CatGradoEstudios;
+import mx.unila.edu.model.CatNivelEducativo;
+import mx.unila.edu.model.CatOfertaAcademica;
 import mx.unila.edu.model.CatPais;
 import mx.unila.edu.model.CatRol;
+import mx.unila.edu.repositories.CatEstadoRepository;
+import mx.unila.edu.repositories.CatGradoEstudiosRepository;
+import mx.unila.edu.repositories.CatNivelEducativoRepository;
+import mx.unila.edu.repositories.CatOfertaAcademicaRepository;
+import mx.unila.edu.repositories.CatPaisRepository;
+import mx.unila.edu.repositories.CatRolRepository;
 
 @Controller
 public class CatalogosController {
@@ -25,6 +29,8 @@ public class CatalogosController {
 	@Autowired CatGradoEstudiosRepository gradoRepository;
 	@Autowired CatPaisRepository paisRepository;
 	@Autowired CatRolRepository rolRepository;
+	@Autowired CatNivelEducativoRepository nivelEducativoRepository;
+	@Autowired CatOfertaAcademicaRepository catOfertaAcademicaRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -32,6 +38,8 @@ public class CatalogosController {
 		this.llenarFormularioGradoEstudios();
 		this.llenarFormularioPais();
 		this.llenarCatalogoRoles();
+		this.llenarNivelesEducativos();
+		this.llenarOfertaAcademica();
 	}
 	
 	private void llenarFormularioEstados() {
@@ -295,5 +303,20 @@ public class CatalogosController {
 		paises.add(new CatPais("Zimbabue", new Date()));
 		paisRepository.save(paises);
 	}
-
+	
+	private void llenarNivelesEducativos() {
+		List<CatNivelEducativo> niveles = new ArrayList<CatNivelEducativo>(0);
+		niveles.add(new CatNivelEducativo("Básica", "Primeria / Secundaria", true));
+		niveles.add(new CatNivelEducativo("Medio superior", "Bachillerato / Preparatoria UNAM / CCH", true));
+		niveles.add(new CatNivelEducativo("Superior", "Licenciaturas", true));
+		niveles.add(new CatNivelEducativo("Posgrado", "Maestrías / Doctorados", true));
+		nivelEducativoRepository.save(niveles);
+	}
+	
+	private void llenarOfertaAcademica() {
+		List<CatOfertaAcademica> ofertas = new ArrayList<CatOfertaAcademica>(0);
+		ofertas.add(new CatOfertaAcademica("Maestría en administración de negocios", "MAN", true, nivelEducativoRepository.getOne(4L)));
+		ofertas.add(new CatOfertaAcademica("Maestría en Docencia", "MD", true, nivelEducativoRepository.getOne(4L)));
+		catOfertaAcademicaRepository.save(ofertas);
+	}
 }

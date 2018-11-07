@@ -1,4 +1,4 @@
-package mx.unila.edu;
+package mx.unila.edu.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import mx.unila.edu.model.RelUsuarioRol;
 import mx.unila.edu.model.TblUsuario;
+import mx.unila.edu.repositories.TblUsuarioRepository;
 
 @Component
 public class UserRepositoryAuthenticationProvider implements AuthenticationProvider{

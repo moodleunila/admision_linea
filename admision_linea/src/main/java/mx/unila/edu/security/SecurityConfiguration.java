@@ -1,4 +1,4 @@
-package mx.unila.edu;
+package mx.unila.edu.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

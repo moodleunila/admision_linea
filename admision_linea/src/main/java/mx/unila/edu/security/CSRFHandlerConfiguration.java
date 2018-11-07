@@ -1,4 +1,4 @@
-package mx.unila.edu;
+package mx.unila.edu.security;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

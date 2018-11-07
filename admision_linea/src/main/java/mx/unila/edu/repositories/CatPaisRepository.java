@@ -1,4 +1,4 @@
-package mx.unila.edu;
+package mx.unila.edu.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
