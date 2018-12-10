@@ -53,6 +53,8 @@ public class TblUsuario implements java.io.Serializable {
 	
 	private Set<TblFormacionAcademica> tblFormacionAcademicas = new HashSet<TblFormacionAcademica>(0);
 	
+	private Set<TblSolicitud> tblSolicitudes = new HashSet<TblSolicitud>(0);
+	
 	private Set<RelUsuarioRol> relUsuarioRols = new HashSet<RelUsuarioRol>(0);
 
 	public TblUsuario() {
@@ -99,6 +101,29 @@ public class TblUsuario implements java.io.Serializable {
 		this.username = username;
 		this.password = password;
 	}
+	
+	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String username, String password,
+			String curp, String rfc, String genero, Date fechaNacimiento, boolean activo, TblDireccion tblDireccion,
+			TblContacto tblContacto, Set<TblFormacionAcademica> tblFormacionAcademicas,
+			Set<TblSolicitud> tblSolicitudes, Set<RelUsuarioRol> relUsuarioRols) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		APaterno = aPaterno;
+		AMaterno = aMaterno;
+		this.username = username;
+		this.password = password;
+		this.curp = curp;
+		this.rfc = rfc;
+		this.genero = genero;
+		this.fechaNacimiento = fechaNacimiento;
+		this.activo = activo;
+		this.tblDireccion = tblDireccion;
+		this.tblContacto = tblContacto;
+		this.tblFormacionAcademicas = tblFormacionAcademicas;
+		this.tblSolicitudes = tblSolicitudes;
+		this.relUsuarioRols = relUsuarioRols;
+	}
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
@@ -141,6 +166,15 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblFormacionAcademicas = tblFormacionAcademicas;
 	}
 	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")	
+	public Set<TblSolicitud> getTblSolicitudes() {
+		return tblSolicitudes;
+	}
+
+	public void setTblSolicitudes(Set<TblSolicitud> tblSolicitudes) {
+		this.tblSolicitudes = tblSolicitudes;
+	}
+
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUsuario")
 	public Set<RelUsuarioRol> getRelUsuarioRols() {
 		return this.relUsuarioRols;
