@@ -1,16 +1,12 @@
 package mx.unila.edu.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -27,7 +23,7 @@ public class TblContacto implements java.io.Serializable{
 	
 	private String telefonoCelular;
 	
-	private Set<TblUsuario> tblUsuarios = new HashSet<TblUsuario>(0);	
+	private TblUsuario tblUsuario;	
 	
 	public TblContacto() {
 		super();
@@ -42,13 +38,13 @@ public class TblContacto implements java.io.Serializable{
 	}
 
 	public TblContacto(Long id, String email, String telefonoLocal, String telefonoCelular,
-			Set<TblUsuario> tblUsuarios) {
+			TblUsuario tblUsuario) {
 		super();
 		this.id = id;
 		this.email = email;
 		this.telefonoLocal = telefonoLocal;
 		this.telefonoCelular = telefonoCelular;
-		this.tblUsuarios = tblUsuarios;
+		this.tblUsuario = tblUsuario;
 	}
 
 	@Id
@@ -90,18 +86,18 @@ public class TblContacto implements java.io.Serializable{
 		this.telefonoCelular = telefonoCelular;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblContacto")
-	public Set<TblUsuario> getTblUsuarios() {
-		return this.tblUsuarios;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tblContacto")
+	public TblUsuario getTblUsuario() {
+		return this.tblUsuario;
 	}
 
-	public void setTblUsuarios(Set<TblUsuario> tblUsuarios) {
-		this.tblUsuarios = tblUsuarios;
+	public void setTblUsuario(TblUsuario tblUsuario) {
+		this.tblUsuario = tblUsuario;
 	}
 
 	@Override
 	public String toString() {
 		return "TblContacto [id=" + id + ", email=" + email + ", telefonoLocal=" + telefonoLocal + ", telefonoCelular="
-				+ telefonoCelular + ", tblUsuarios=" + tblUsuarios + "]";
+				+ telefonoCelular + ", tblUsuario=" + tblUsuario + "]";
 	}	
 }

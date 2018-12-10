@@ -1,8 +1,6 @@
 package mx.unila.edu.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,7 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -37,7 +35,7 @@ public class TblDireccion implements java.io.Serializable {
 	
 	private String ciudadInternacional;
 	
-	private Set<TblUsuario> tblUsuarios = new HashSet<TblUsuario>(0);
+	private TblUsuario tblUsuario;
 	
 
 	public TblDireccion(Long id, String calle, String numeroInterno, String numeroExterno, String colonia,
@@ -55,7 +53,7 @@ public class TblDireccion implements java.io.Serializable {
 	}
 
 	public TblDireccion(Long id, String calle, String colonia, String codigoPostal, CatEstado catEstado,
-			CatPais catPais, String ciudadInternacional, Set<TblUsuario> usuarios) {
+			CatPais catPais, String ciudadInternacional, TblUsuario tblUsuario) {
 		super();
 		this.id = id;
 		this.calle = calle;
@@ -64,7 +62,7 @@ public class TblDireccion implements java.io.Serializable {
 		this.catEstado = catEstado;
 		this.catPais = catPais;
 		this.ciudadInternacional = ciudadInternacional;
-		this.tblUsuarios = usuarios;
+		this.tblUsuario = tblUsuario;
 	}
 
 	public TblDireccion() {
@@ -157,19 +155,19 @@ public class TblDireccion implements java.io.Serializable {
 		this.ciudadInternacional = ciudadInternacional;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblDireccion")
-	public Set<TblUsuario> getTblUsuarios() {
-		return this.tblUsuarios;
+	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tblDireccion")
+	public TblUsuario getTblUsuario() {
+		return this.tblUsuario;
 	}
 
-	public void setTblUsuarios(Set<TblUsuario> tblUsuarios) {
-		this.tblUsuarios = tblUsuarios;
+	public void setTblUsuario(TblUsuario tblUsuario) {
+		this.tblUsuario = tblUsuario;
 	}
 
 	@Override
 	public String toString() {
 		return "TblDireccion [id=" + id + ", calle=" + calle + ", numeroInterno=" + numeroInterno + ", numeroExterno="
 				+ numeroExterno + ", colonia=" + colonia + ", codigoPostal=" + codigoPostal + ", catEstado=" + catEstado
-				+ ", catPais=" + catPais + ", tblUsuarios=" + tblUsuarios + "]";
+				+ ", catPais=" + catPais + ", tblUsuarios=" + tblUsuario + "]";
 	}
 }

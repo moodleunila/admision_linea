@@ -3,12 +3,9 @@ package mx.unila.edu.catalogs;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import mx.unila.edu.model.CatEstado;
 import mx.unila.edu.model.CatGradoEstudios;
 import mx.unila.edu.model.CatNivelEducativo;

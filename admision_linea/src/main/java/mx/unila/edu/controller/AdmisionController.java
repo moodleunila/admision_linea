@@ -12,6 +12,7 @@ import mx.unila.edu.model.TblFormacionAcademica;
 import mx.unila.edu.model.TblUsuario;
 import mx.unila.edu.repositories.CatEstadoRepository;
 import mx.unila.edu.repositories.CatGradoEstudiosRepository;
+import mx.unila.edu.repositories.CatOfertaAcademicaRepository;
 import mx.unila.edu.repositories.CatPaisRepository;
 import mx.unila.edu.repositories.CatRolRepository;
 import mx.unila.edu.repositories.RelUsuarioRolRepository;
@@ -26,6 +27,13 @@ public class AdmisionController {
 	@Autowired CatPaisRepository paisRepository;
 	@Autowired RelUsuarioRolRepository usuarioRolRepository;
 	@Autowired CatRolRepository rolRepository;
+	@Autowired CatOfertaAcademicaRepository ofertaAcademicaRepository;
+	
+	@RequestMapping("/")
+	public String fomulario(Model model) {
+		model = this.llenarDatosFormulario(model);		
+		return "solicitud";
+	}
 	
 	@RequestMapping("/solicitud")
 	public String solicitud(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {
@@ -37,43 +45,36 @@ public class AdmisionController {
 	@RequestMapping("/distribuir")
 	public String distribuir(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica, int bandera) {
 		String direccionar = "";
+		user = this.asignarValores(user, direction, contacto, academica);
 		if(bandera == 0) 
 			direccionar = this.editar(model, user, direction, contacto, academica);
 		else
 			direccionar = this.almacenar(model, user, direction, contacto, academica);
 		return direccionar;
 	}
-	
-	
+		
 	public String editar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {
-		user = this.asignarValores(user, direction, contacto, academica);
+		
 		model = this.llenarDatosFormulario(model);
 		model.addAttribute("user", user);
 		return "editar-solicitud";
 	}	
 	
-	public String almacenar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {
-		user = this.asignarValores(user, direction, contacto, academica);
+	public String almacenar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {		
 		user.generarUsuario();
 		usuarioRepository.save(user);		
 		model.addAttribute("user", user);
 		this.generarRol(user, 3L);
 		return "confirmacion";
 	}
-	
-	@RequestMapping("/")
-	public String fomulario(Model model) {
-		model = this.llenarDatosFormulario(model);		
-		return "solicitud";
-	}
-	
+
 	public TblUsuario asignarValores(TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica academica) {
 		direction.setCatEstado(estadoRepository.getOne(direction.getCatEstado().getId()));
 		direction.setCatPais(paisRepository.getOne(direction.getCatPais().getId()));
 		academica.setCatGradoEstudios(gradoRepository.getOne(academica.getCatGradoEstudios().getId()));
 		user.setTblDireccion(direction);
 		user.setTblContacto(contacto);
-		user.setTblFormacionAcademica(academica);
+		//user.setTblFormacionAcademica(academica);
 		return user;
 	}
 	
@@ -81,6 +82,7 @@ public class AdmisionController {
 		model.addAttribute("estados", estadoRepository.findAll());
 		model.addAttribute("paises", paisRepository.findAll());
 		model.addAttribute("gradosAcademicos", gradoRepository.findAll());
+		model.addAttribute("ofertas", ofertaAcademicaRepository.findAll());
 		return model;
 	}
 	

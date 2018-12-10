@@ -1,10 +1,6 @@
 package mx.unila.edu.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,35 +20,39 @@ public class TblFormacionAcademica implements java.io.Serializable{
 	
 	private CatGradoEstudios catGradoEstudios;
 	
-	private String universidadOrigen;
+	private String institucion;
 	
-	private String tituloLicenciatura;
+	private String documentoObtenido;
 	
-	private Set<TblUsuario> tblUsuarios = new HashSet<TblUsuario>(0);
+	private String nombre;
+	
+	private TblUsuario tblUsuario;
 	
 	public TblFormacionAcademica() {
 		super();
+	}	
+	
+	public TblFormacionAcademica(Long id, CatGradoEstudios catGradoEstudios, String institucion,
+			String documentoObtenido, String nombre) {
+		super();
+		this.id = id;
+		this.catGradoEstudios = catGradoEstudios;
+		this.institucion = institucion;
+		this.documentoObtenido = documentoObtenido;
+		this.nombre = nombre;
 	}
 
-	public TblFormacionAcademica(Long id, CatGradoEstudios catGradoEstudios, String universidadOrigen,
-			String tituloLicenciatura) {
+	public TblFormacionAcademica(Long id, CatGradoEstudios catGradoEstudios, String institucion,
+			String documentoObtenido, String nombre, TblUsuario tblUsuario) {
 		super();
 		this.id = id;
 		this.catGradoEstudios = catGradoEstudios;
-		this.universidadOrigen = universidadOrigen;
-		this.tituloLicenciatura = tituloLicenciatura;
+		this.institucion = institucion;
+		this.documentoObtenido = documentoObtenido;
+		this.nombre = nombre;
+		this.tblUsuario = tblUsuario;
 	}
-	
-	public TblFormacionAcademica(Long id, CatGradoEstudios catGradoEstudios, String universidadOrigen,
-			String tituloLicenciatura, Set<TblUsuario> tblUsuarios) {
-		super();
-		this.id = id;
-		this.catGradoEstudios = catGradoEstudios;
-		this.universidadOrigen = universidadOrigen;
-		this.tituloLicenciatura = tituloLicenciatura;
-		this.tblUsuarios = tblUsuarios;
-	}
-	
+
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
 
@@ -76,31 +75,41 @@ public class TblFormacionAcademica implements java.io.Serializable{
 		this.catGradoEstudios = catGradoEstudios;
 	}
 	
-	@Column(name = "universidad_origen")
-	public String getUniversidadOrigen() {
-		return this.universidadOrigen;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_usuario", nullable = false)
+	public TblUsuario getTblUsuario() {
+		return this.tblUsuario;
 	}
 
-	public void setUniversidadOrigen(String universidadOrigen) {
-		this.universidadOrigen = universidadOrigen;
-	}
-
-	@Column(name = "titulo_licenciatura")
-	public String getTituloLicenciatura() {
-		return this.tituloLicenciatura;
-	}
-
-	public void setTituloLicenciatura(String tituloLicenciatura) {
-		this.tituloLicenciatura = tituloLicenciatura;
+	public void setTblUsuario(TblUsuario tblUsuario) {
+		this.tblUsuario = tblUsuario;
 	}
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblFormacionAcademica")
-	public Set<TblUsuario> getTblUsuarios() {
-		return this.tblUsuarios;
+	@Column(name = "institucion")
+	public String getInstitucion() {
+		return this.institucion;
 	}
 
-	public void setTblUsuarios(Set<TblUsuario> tblUsuarios) {
-		this.tblUsuarios = tblUsuarios;
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
+	}
+	
+	@Column(name = "nombre")
+	public String getNombre() {
+		return this.nombre;
 	}
 
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	@Column(name = "documento_obtenido")
+	public String getDocumentoObtenido() {
+		return this.documentoObtenido;
+	}
+
+	public void setDocumentoObtenido(String documentoObtenido) {
+		this.documentoObtenido = documentoObtenido;
+	}	
+	
 }

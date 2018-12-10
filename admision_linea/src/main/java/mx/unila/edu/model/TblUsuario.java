@@ -12,8 +12,8 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -51,7 +51,7 @@ public class TblUsuario implements java.io.Serializable {
 	
 	private TblContacto tblContacto;
 	
-	private TblFormacionAcademica tblFormacionAcademica;
+	private Set<TblFormacionAcademica> tblFormacionAcademicas = new HashSet<TblFormacionAcademica>(0);
 	
 	private Set<RelUsuarioRol> relUsuarioRols = new HashSet<RelUsuarioRol>(0);
 
@@ -61,7 +61,7 @@ public class TblUsuario implements java.io.Serializable {
 
 	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
 			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			TblFormacionAcademica tblFormacionAcademica, String username, String password) {
+			Set<TblFormacionAcademica> tblFormacionAcademicas, String username, String password) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -74,14 +74,14 @@ public class TblUsuario implements java.io.Serializable {
 		this.activo = activo;
 		this.tblDireccion = tblDireccion;
 		this.tblContacto = tblcontacto;
-		this.tblFormacionAcademica = tblFormacionAcademica;
+		this.tblFormacionAcademicas = tblFormacionAcademicas;
 		this.username = username;
 		this.password = password;
 	}
 
 	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
 			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			TblFormacionAcademica tblFormacionAcademica , String username, String password, Set<RelUsuarioRol> relUsuarioRols) {
+			Set<TblFormacionAcademica> tblFormacionAcademicas , String username, String password, Set<RelUsuarioRol> relUsuarioRols) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -94,7 +94,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.activo = activo;
 		this.tblDireccion = tblDireccion;
 		this.tblContacto = tblcontacto;
-		this.tblFormacionAcademica = tblFormacionAcademica;
+		this.tblFormacionAcademicas = tblFormacionAcademicas;
 		this.relUsuarioRols = relUsuarioRols;
 		this.username = username;
 		this.password = password;
@@ -112,7 +112,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_tbl_contacto", nullable = false)
 	public TblContacto getTblContacto() {
 		return this.tblContacto;
@@ -122,7 +122,7 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblContacto = tblContacto;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_tbl_direccion", nullable = false)
 	public TblDireccion getTblDireccion() {
 		return this.tblDireccion;
@@ -132,14 +132,22 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblDireccion = tblDireccion;
 	}
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "fk_tbl_formacion_academica", nullable = false)
-	public TblFormacionAcademica getTblFormacionAcademica() {
-		return this.tblFormacionAcademica;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUsuario")	
+	public Set<TblFormacionAcademica> getTblFormacionAcademicas() {
+		return this.tblFormacionAcademicas;
 	}
 
-	public void setTblFormacionAcademica(TblFormacionAcademica tblFormacionAcademica) {
-		this.tblFormacionAcademica = tblFormacionAcademica;
+	public void setTblFormacionAcademicas(Set<TblFormacionAcademica> tblFormacionAcademicas) {
+		this.tblFormacionAcademicas = tblFormacionAcademicas;
+	}
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUsuario")
+	public Set<RelUsuarioRol> getRelUsuarioRols() {
+		return this.relUsuarioRols;
+	}
+
+	public void setRelUsuarioRols(Set<RelUsuarioRol> relUsuarioRols) {
+		this.relUsuarioRols = relUsuarioRols;
 	}
 
 	@Column(name = "nombre", nullable = false)
@@ -232,23 +240,14 @@ public class TblUsuario implements java.io.Serializable {
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUsuario")
-	public Set<RelUsuarioRol> getRelUsuarioRols() {
-		return this.relUsuarioRols;
-	}
-
-	public void setRelUsuarioRols(Set<RelUsuarioRol> relUsuarioRols) {
-		this.relUsuarioRols = relUsuarioRols;
-	}
+	}	
 
 	@Override
 	public String toString() {
 		return "TblUsuario [id=" + id + ", nombre=" + nombre + ", APaterno=" + APaterno + ", AMaterno=" + AMaterno
 				+ ", curp=" + curp + ", rfc=" + rfc + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento
 				+ ", activo=" + activo + ", tblDireccion=" + tblDireccion + ", tblContacto=" + tblContacto
-				+ ", tblFormacionAcademica=" + tblFormacionAcademica + ", relUsuarioRols=" + relUsuarioRols + "]";
+				+ ", tblFormacionAcademica=" + tblFormacionAcademicas + ", relUsuarioRols=" + relUsuarioRols + "]";
 	}	
 	
 	public void generarUsuario() {
