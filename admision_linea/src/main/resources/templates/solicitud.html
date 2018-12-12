@@ -44,6 +44,11 @@
 				<div class="tab-content" id="myTabContent">
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				  		<div class="form-row">
+				  			<div class="col-md-12 mb-12">
+				  				<div class="alert alert-info" role="alert">				  				
+  									<b>Instrucciones: </b> Captura todos los datos personales que aparecen a continuación, aquellos campos que tengan un asterísco (*) son obligatorios
+								</div>
+				  			</div>
 					    	<div class="col-md-4 mb-3">
 						    	<label for="nombre">*Nombre(s)</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="nombre" placeholder="Nombre" value="" name="nombre"/>
@@ -133,6 +138,11 @@
 			  		<!-- Dirección -->
 				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
+							<div class="col-md-12 mb-12">
+				  				<div class="alert alert-info" role="alert">				  				
+  									<b>Instrucciones: </b> Captura tu dirección, aquellos campos que tengan un asterísco (*) son obligatorios
+								</div>
+				  			</div>
 					    	<div class="col-md-6 mb-3">
 						    	<label for="calle">*Calle</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="calle" placeholder="Calle" value="" name="calle"/>
@@ -195,49 +205,105 @@
 				  	<!-- Datos académicos -->
 				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
 				  		<div class="form-row">
-					    	<div class="col-md-4 mb-3">
+				  			<div class="col-md-12 mb-12">
+				  				<div class="alert alert-info" role="alert">				  				
+  									<b>Instrucciones: </b> Agrega tu último grádo de estudios, en dado caso que hayas estudiado el mismo nivel varias veces (por ejemplo dos licenciaturas, agregalas)
+								</div>
+				  			</div>
+				  			<div class="col-md-12 mb-12">				  												
+								<button type="button" class="btn btn-outline-primary" id="agregar-nivel">
+								    + Agregar nivel educativo
+								</button>
+							</div>								
+							<div class="col-md-4 mb-3 form-nuevo oculto">
+								<br/>										
+			  					<label for="institucion">Institución *</label> <!-- is-invalid -->
+				      			<input type="text" class="form-control " id="institucion" placeholder="Institución" value="" name="institucion"/>
+				      			<div class="invalid-feedback">
+			        				Por favor capture el nombre de la institución
+			      				</div>
+		      				</div>	
+			      			<div class="col-md-4 mb-3 form-nuevo oculto">
+			      				<br/>		
+			      				<label for="documento">Documento obtenido*</label> <!-- is-invalid -->
+				      			<input type="text" class="form-control " id="documento" placeholder="Documento obtenido" value="" name="documento"/>
+				      			<div class="invalid-feedback">
+			        				Por favor capture el documento obtenido
+			      				</div>					    																													    			
+		    				</div>
+		    				<div class="col-md-4 mb-3 form-nuevo oculto">
+					    		<br/>
 					    		<br/>
 				    			<div class="input-group mb-3">
 						  			<div class="input-group-prepend">
-							    		<label class="input-group-text" for="catGradoEstudios">*Último grado de estudios</label>
+							    		<label class="input-group-text" for="catGradoEstudios">*Grado de estudios</label>
 							  		</div>
 							  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
 										<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
 							  		</select>
 								</div>
 					    	</div>
-					    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
-						    	<label for="universidadOrigen">*Universidad de Origen</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="universidadOrigen" placeholder="Universidad de origen" value="" name="universidadOrigen"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el nombre de la universidad de origen
-						      	</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
-					    		<label for="tituloLicenciatura">*Título de licenciatura</label> <!-- is-invalid -->
+					    	<div class="col-md-4 mb-3 oculto" id="titulo-licenciatura">
+					    	<br/>
+					    		<label for="tituloLicenciatura">*Nombre del título o especialidad</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" value="" name="tituloLicenciatura"/>
 						      	<div class="invalid-feedback">
 						        	Por favor captura el título de licencitura
 						      	</div>
 						    </div>
-				  		</div>
-				  		<div class="form-row">
-				  			<div class="col-md-4 mb-3">
-				  			</div>
-				    		<div class="col-md-4 mb-3 centrado">
-				    			<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>
+						    <div class="col-md-12 mb-12 form-nuevo oculto">
+						    	<center>
+							    	<button type="button" class="btn btn-outline-primary" id="registrar-nivel">
+									    + Agregar nivel educativo
+									</button>
+								</center>					    		
 					    	</div>
-					    	<div class="col-md-4 mb-3">
-				  			</div>
-				  		</div>
+					    	<div class="col-md-12 mb-12 oculto" id="tabla-datos-academicos">
+					    	<br/>
+					    		<table class="table table-hover">
+							  		<thead>
+								    	<tr>
+								      		<th scope="col">#</th>
+								      		<th scope="col">Institución</th>
+								      		<th scope="col">Documento obtenido</th>
+								      		<th scope="col">Grado de estudios</th>
+								      		<th scope="col">Título</th>
+							    		</tr>
+								  	</thead>
+								  	<tbody id="cuerpo-tabla">								    	
+								  	</tbody>
+								</table>					    		
+					    	</div>
+				  		</div>				  		
 				  	</div>		
 				  	
 				  	<!-- Oferta académica -->
 				  	<div class="tab-pane fade" id="oferta" role="tabpane" aria-labelledby="oferta-tab">
-				  	</div>
+				  		<div class="form-row">
+				  			<div class="col-md-12 mb-12">
+				  				<div class="alert alert-info" role="alert">				  				
+  									<b>Instrucciones: </b> Selecciona la oferta educativa de tu agrado
+								</div>
+				  			</div>
+				  			<div class="col-md-4 mb-3">					    		
+				    			<div class="input-group mb-3">
+						  			<div class="input-group-prepend">
+							    		<label class="input-group-text" for="catGradoEstudios">*Oferta educativa: </label>
+							  		</div>
+							  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
+										<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
+							  		</select>
+								</div>
+					    	</div>	
+					    	<div class="col-md-12 mb-12">
+					    		<center>
+				    				<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>
+			    				</center>
+					    	</div>				    						    	
+				  		</div>
+				  	</div>				  	
 				  	
-				  	<!--  <Elaborar el tab de la Ofert  a>-->
-				  	
+				  	<!--  <Elaborar el tab de la Ofert  a>-->				  	
 				  			  	
 				  	<div class="form-row error" style="display: none;">
 				    	<div class="col-md-12 mb-3 centrado">

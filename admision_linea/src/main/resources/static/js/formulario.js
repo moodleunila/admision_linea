@@ -1,19 +1,26 @@
-$(document).ready(function() {	
+$(document).ready(function() {
+	
+	/*
+	 * 
+	 * Habilitación del campo grado de estudios
+	 * */
 	$("#catGradoEstudios").on("change", function(){
 		var grado = $("#catGradoEstudios option:selected").val();
 		switch (grado*1){
 			case 4:
 			case 5:
-			case 6:
-				$("#universidad-origen").show("slow");
+			case 6:				
 				$("#titulo-licenciatura").show("slow");
 				break;
-			default:
-				$("#universidad-origen").hide("slow");
+			default:				
 				$("#titulo-licenciatura").hide("slow");
 		}
 	});
 		
+	/*
+	 * 
+	 * Habilitación de la ciudad internacional en caso de seleccionar otro país
+	 * */
 	$("#catPais").on("change", function(){		
 		if($("#catPais option:selected").val()*1 > 1){
 			$("#listado-estados").hide("slow");
@@ -25,21 +32,75 @@ $(document).ready(function() {
 		}
 	});
 		
+	/*
+	 * 
+	 * Oculta 
+	 * */	
 	if($("#catPais option:selected").val() * 1 > 1){
 		$("#listado-estados").hide();
 		$("#ciudad-internacional").show();
 	}
 	
-	if($("#catGradoEstudios option:selected").val() * 1 > 3){
-		$("#universidad-origen").show();
-		$("#titulo-licenciatura").show();
-	}
+	if($("#catGradoEstudios option:selected").val() * 1 > 3)		
+		$("#titulo-licenciatura").show();	
+	
+	/*
+	 * 
+	 * Agregar un nuevo nivel educativo
+	 * */
+	$("#agregar-nivel").on("click", function(){
+		$(this).hide("slow");
+		$(".form-nuevo").show("slow");
+	});
+	
+	/*
+	 * 
+	 * Registrar un nuevo novel educativo
+	 * */	
+	$("#registrar-nivel").on("click", function(){
+		var aniadir = true;
+		var grado = $("#catGradoEstudios option:selected").val();
+		if($("#institucion").val() == null || $("#institucion").val() == ""){
+			$( "#institucion").addClass( "is-invalid" );
+			aniadir = false;
+		}
+		
+		if($("#documento").val() == null || $("#documento").val() == ""){
+			$( "#documento").addClass( "is-invalid" );
+			aniadir = false;
+		}		
+		
+		if(grado*1 > 3){	    	
+	    	if($("#tituloLicenciatura").val() == "" || $("#tituloLicenciatura").val() == null){
+	    		$( "#tituloLicenciatura").addClass( "is-invalid" );
+	    		aniadir = false;
+	    	}
+	    }
+		
+		if(aniadir){
+			var consecutivo = $("#cuerpo-tabla > tr").length + 1; 
+			var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>" + $("#tituloLicenciatura").val() + "</td>" + "</tr>";
+			$("#cuerpo-tabla").append(registro);
+			
+			$("#tabla-datos-academicos").show("slow");
+			$(".form-nuevo").hide("slow");
+			if(grado*1 > 3){	
+				$("#titulo-licenciatura").hide("slow");
+			}
+			$("#agregar-nivel").show("slow");
+			
+			$("#institucion").val("");
+			$("#documento").val("");
+			$("#catGradoEstudios").val('1');
+			$("#tituloLicenciatura").val("");
+		}
+	});
+	
 });
 
 function validar(){
 	
-	var enviar = true;
-	var grado = $("#catGradoEstudios option:selected").val();
+	var enviar = true;	
 	var paisSeleccionado = $("#catPais option:selected").val();
 	
 	if($("#nombre").val() == "" || $("#nombre").val() == null){
@@ -140,26 +201,6 @@ function validar(){
     else{
     	$( "#codigoPostal").removeClass( "is-invalid" );
 		$( "#codigoPostal").addClass( "is-valid" );
-    }
-    
-    if(grado*1 > 3){
-    	if($("#universidadOrigen").val() == "" || $("#universidadOrigen").val() == null){
-    		$( "#universidadOrigen").addClass( "is-invalid" );
-    		enviar = false;
-    	}
-    	else{
-    		$( "#universidadOrigen").removeClass( "is-invalid" );
-    		$( "#universidadOrigen").addClass( "is-valid" );
-    	}
-    	
-    	if($("#tituloLicenciatura").val() == "" || $("#tituloLicenciatura").val() == null){
-    		$( "#tituloLicenciatura").addClass( "is-invalid" );
-    		enviar = false;
-    	}
-    	else{
-    		$( "#tituloLicenciatura").removeClass( "is-invalid" );
-    		$( "#tituloLicenciatura").addClass( "is-valid" );
-    	}
     }
     
     if(paisSeleccionado*1 > 1){    	

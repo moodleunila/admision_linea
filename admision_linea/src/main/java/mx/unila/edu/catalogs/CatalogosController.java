@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import mx.unila.edu.model.CatEstado;
 import mx.unila.edu.model.CatGradoEstudios;
+import mx.unila.edu.model.CatModalidad;
 import mx.unila.edu.model.CatNivelEducativo;
 import mx.unila.edu.model.CatOfertaAcademica;
 import mx.unila.edu.model.CatPais;
 import mx.unila.edu.model.CatRol;
 import mx.unila.edu.repositories.CatEstadoRepository;
 import mx.unila.edu.repositories.CatGradoEstudiosRepository;
+import mx.unila.edu.repositories.CatModalidadRepository;
 import mx.unila.edu.repositories.CatNivelEducativoRepository;
 import mx.unila.edu.repositories.CatOfertaAcademicaRepository;
 import mx.unila.edu.repositories.CatPaisRepository;
@@ -28,6 +30,7 @@ public class CatalogosController {
 	@Autowired CatRolRepository rolRepository;
 	@Autowired CatNivelEducativoRepository nivelEducativoRepository;
 	@Autowired CatOfertaAcademicaRepository catOfertaAcademicaRepository;
+	@Autowired CatModalidadRepository catModalidadRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -36,7 +39,8 @@ public class CatalogosController {
 		this.llenarFormularioPais();
 		this.llenarCatalogoRoles();
 		this.llenarNivelesEducativos();
-		this.llenarOfertaAcademica();
+		this.llenarModalidades();
+		this.llenarOfertaAcademica();		
 	}
 	
 	private void llenarFormularioEstados() {
@@ -310,10 +314,17 @@ public class CatalogosController {
 		nivelEducativoRepository.save(niveles);
 	}
 	
+	private void llenarModalidades() {
+		List<CatModalidad> modalidades = new ArrayList<CatModalidad>(0);
+		modalidades.add(new CatModalidad("Línea", "Utilización de la plataforma MOODLE", new Date(), true));
+		modalidades.add(new CatModalidad("Presencial", "Escolarizado", new Date(), false));
+		catModalidadRepository.save(modalidades);
+	}
+	
 	private void llenarOfertaAcademica() {
 		List<CatOfertaAcademica> ofertas = new ArrayList<CatOfertaAcademica>(0);
-		ofertas.add(new CatOfertaAcademica("Maestría en administración de negocios", "MAN", true, nivelEducativoRepository.getOne(4L)));
-		ofertas.add(new CatOfertaAcademica("Maestría en Docencia", "MD", true, nivelEducativoRepository.getOne(4L)));
+		ofertas.add(new CatOfertaAcademica("Maestría en administración de negocios", "MAN", true, nivelEducativoRepository.getOne(4L), catModalidadRepository.getOne(1L)));
+		ofertas.add(new CatOfertaAcademica("Maestría en Docencia", "MD", true, nivelEducativoRepository.getOne(4L), catModalidadRepository.getOne(1L)));
 		catOfertaAcademicaRepository.save(ofertas);
 	}
 }

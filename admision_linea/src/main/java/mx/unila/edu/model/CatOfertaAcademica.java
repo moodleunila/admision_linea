@@ -31,6 +31,8 @@ public class CatOfertaAcademica implements java.io.Serializable{
 	
 	private CatNivelEducativo catNivelEducativo;
 	
+	private CatModalidad catModalidad;
+	
 	private Set<TblSolicitud> tblSolicitudes = new HashSet<TblSolicitud>(0);
 
 	public CatOfertaAcademica() {
@@ -45,21 +47,23 @@ public class CatOfertaAcademica implements java.io.Serializable{
 	}
 	
 	public CatOfertaAcademica(String nombre, String descripcion, boolean activo,
-			CatNivelEducativo catNivelEducativo) {
-		super();
-		this.nombre = nombre;
-		this.descripcion = descripcion;
-		this.activo = activo;
-		this.catNivelEducativo = catNivelEducativo;		
-	}
-	
-	public CatOfertaAcademica(String nombre, String descripcion, boolean activo,
-			CatNivelEducativo catNivelEducativo, Set<TblSolicitud> tblSolicitudes) {
+			CatNivelEducativo catNivelEducativo, CatModalidad catModalidad) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.activo = activo;
 		this.catNivelEducativo = catNivelEducativo;
+		this.catModalidad = catModalidad;
+	}
+	
+	public CatOfertaAcademica(String nombre, String descripcion, boolean activo,
+			CatNivelEducativo catNivelEducativo, CatModalidad catModalidad, Set<TblSolicitud> tblSolicitudes) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.activo = activo;
+		this.catNivelEducativo = catNivelEducativo;
+		this.catModalidad = catModalidad;
 		this.tblSolicitudes = tblSolicitudes;
 	}
 
@@ -110,6 +114,16 @@ public class CatOfertaAcademica implements java.io.Serializable{
 
 	public void setCatNivelEducativo(CatNivelEducativo catNivelEducativo) {
 		this.catNivelEducativo = catNivelEducativo;
+	}
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "fk_modalidad", nullable = false)
+	public CatModalidad getCatModalidad() {
+		return this.catModalidad;
+	}
+
+	public void setCatModalidad(CatModalidad catModalidad) {
+		this.catModalidad = catModalidad;
 	}
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "catOfertaAcademica")
