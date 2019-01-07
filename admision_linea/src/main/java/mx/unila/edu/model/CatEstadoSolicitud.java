@@ -1,5 +1,6 @@
 package mx.unila.edu.model;
 
+import static javax.persistence.GenerationType.IDENTITY;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -7,6 +8,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -38,9 +40,8 @@ public class CatEstadoSolicitud implements java.io.Serializable{
 		this.id = id;
 	}
 
-	public CatEstadoSolicitud(Long id, String descripcion, Date fechaCreacion, String nombre) {
-		super();
-		this.id = id;
+	public CatEstadoSolicitud(String descripcion, Date fechaCreacion, String nombre) {
+		super();		
 		this.descripcion = descripcion;
 		this.fechaCreacion = fechaCreacion;
 		this.nombre = nombre;
@@ -59,6 +60,7 @@ public class CatEstadoSolicitud implements java.io.Serializable{
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "id", unique = true, nullable = false)
 	public Long getId() {

@@ -4,7 +4,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
-
+import com.fasterxml.jackson.annotation.JsonView;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,14 +19,20 @@ import javax.persistence.Table;
 @Table(name = "cat_oferta_educativa", catalog = "admision_ead")
 public class CatOfertaAcademica implements java.io.Serializable{
 	
+	public interface Basico{}
+	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonView(Basico.class)
 	private Long id;
 	
+	@JsonView(Basico.class)
 	private String nombre;
 	
+	@JsonView(Basico.class)
 	private String descripcion;
 	
+	@JsonView(Basico.class)
 	private boolean activo;
 	
 	private CatNivelEducativo catNivelEducativo;
@@ -39,6 +45,11 @@ public class CatOfertaAcademica implements java.io.Serializable{
 		super();
 	}
 
+	public CatOfertaAcademica(Long id) {
+		super();
+		this.id = id;
+	}
+	
 	public CatOfertaAcademica(String nombre, String descripcion, boolean activo) {
 		super();		
 		this.nombre = nombre;

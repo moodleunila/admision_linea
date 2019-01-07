@@ -1,6 +1,15 @@
 $(document).ready(function() {
 	
 	/*
+	 * Jamon
+	 * */
+	var token = $("input[name='_csrf']").val();
+    var header = "X-CSRF-TOKEN";
+    $(document).ajaxSend(function(e, xhr, options) {
+        xhr.setRequestHeader(header, token);
+    });
+	
+	/*
 	 * 
 	 * Habilitación del campo grado de estudios
 	 * */
@@ -78,9 +87,20 @@ $(document).ready(function() {
 	    }
 		
 		if(aniadir){
-			var consecutivo = $("#cuerpo-tabla > tr").length + 1; 
-			var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>" + $("#tituloLicenciatura").val() + "</td>" + "</tr>";
-			$("#cuerpo-tabla").append(registro);
+			var consecutivo = $("#cuerpo-tabla > tr").length + 1;
+			var hiddenNiveles = $("#niveles-educativos").val();
+			if($("#tituloLicenciatura").val() == ""){
+				hiddenNiveles += $("#institucion").val() + ">" + $("#documento").val() + ">" + $("#catGradoEstudios option:selected").val() + ">----#";
+				var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>----</td>" + "</tr>";
+				$("#cuerpo-tabla").append(registro);
+			}
+			else{
+				hiddenNiveles += $("#institucion").val() + ">" + $("#documento").val() + ">" + $("#catGradoEstudios option:selected").val() + ">" + $("#tituloLicenciatura").val()+"#";
+				var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>" + $("#tituloLicenciatura").val() + "</td>" + "</tr>";
+				$("#cuerpo-tabla").append(registro);
+			}
+			$("#niveles-educativos").val(hiddenNiveles);
+			
 			
 			$("#tabla-datos-academicos").show("slow");
 			$(".form-nuevo").hide("slow");
@@ -214,6 +234,14 @@ function validar(){
     	}
     		
     }
+    
+    if($("#niveles-educativos").val() == ""){
+    	$("#error-facademica").show("slow");
+    	enviar = false;
+    }else
+    	$("#error-facademica").hide("slow");    	
+    
+    
     
 	if(enviar)
 		$("#solicitud").submit();

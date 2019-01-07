@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import mx.unila.edu.model.CatEstado;
+import mx.unila.edu.model.CatEstadoSolicitud;
 import mx.unila.edu.model.CatGradoEstudios;
 import mx.unila.edu.model.CatModalidad;
 import mx.unila.edu.model.CatNivelEducativo;
@@ -14,6 +15,7 @@ import mx.unila.edu.model.CatOfertaAcademica;
 import mx.unila.edu.model.CatPais;
 import mx.unila.edu.model.CatRol;
 import mx.unila.edu.repositories.CatEstadoRepository;
+import mx.unila.edu.repositories.CatEstadoSolicitudRepository;
 import mx.unila.edu.repositories.CatGradoEstudiosRepository;
 import mx.unila.edu.repositories.CatModalidadRepository;
 import mx.unila.edu.repositories.CatNivelEducativoRepository;
@@ -31,6 +33,7 @@ public class CatalogosController {
 	@Autowired CatNivelEducativoRepository nivelEducativoRepository;
 	@Autowired CatOfertaAcademicaRepository catOfertaAcademicaRepository;
 	@Autowired CatModalidadRepository catModalidadRepository;
+	@Autowired CatEstadoSolicitudRepository catEstadoSolicitudRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -40,7 +43,8 @@ public class CatalogosController {
 		this.llenarCatalogoRoles();
 		this.llenarNivelesEducativos();
 		this.llenarModalidades();
-		this.llenarOfertaAcademica();		
+		this.llenarOfertaAcademica();	
+		this.llenarEstadosSolicitud();
 	}
 	
 	private void llenarFormularioEstados() {
@@ -324,7 +328,17 @@ public class CatalogosController {
 	private void llenarOfertaAcademica() {
 		List<CatOfertaAcademica> ofertas = new ArrayList<CatOfertaAcademica>(0);
 		ofertas.add(new CatOfertaAcademica("Maestría en administración de negocios", "MAN", true, nivelEducativoRepository.getOne(4L), catModalidadRepository.getOne(1L)));
-		ofertas.add(new CatOfertaAcademica("Maestría en Docencia", "MD", true, nivelEducativoRepository.getOne(4L), catModalidadRepository.getOne(1L)));
+		ofertas.add(new CatOfertaAcademica("Maestría en docencia", "MD", true, nivelEducativoRepository.getOne(4L), catModalidadRepository.getOne(1L)));
 		catOfertaAcademicaRepository.save(ofertas);
+	}
+	
+	private void llenarEstadosSolicitud() {
+		List<CatEstadoSolicitud> estadosSolicitud = new ArrayList<CatEstadoSolicitud>(0);
+		estadosSolicitud.add(new CatEstadoSolicitud("Etapa de proceso inicial", new Date(), "Solicitud"));
+		estadosSolicitud.add(new CatEstadoSolicitud("Etapa donde se genera una forma de pago y el estudiante realiza el aporte de la cantidad", new Date(), "Pago"));
+		estadosSolicitud.add(new CatEstadoSolicitud("Etapa donde el usuario realiza la carga de los documentos necesarios para inscribirse", new Date(), "Entrega de documentos"));
+		estadosSolicitud.add(new CatEstadoSolicitud("Etapa donde el usuario ya ha realizado la agregación de los documentos y el ejecutivo de la uiversidad designado realiza la validación y autenticidad", new Date(), "Validación de documentos"));
+		estadosSolicitud.add(new CatEstadoSolicitud("El usuario ya ha completado el proceso y se procede a darle acceso a la Universidad", new Date(), "Incorporación"));
+		catEstadoSolicitudRepository.save(estadosSolicitud);
 	}
 }

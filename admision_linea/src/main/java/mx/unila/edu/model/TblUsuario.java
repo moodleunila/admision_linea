@@ -279,11 +279,12 @@ public class TblUsuario implements java.io.Serializable {
 	@Override
 	public String toString() {
 		return "TblUsuario [id=" + id + ", nombre=" + nombre + ", APaterno=" + APaterno + ", AMaterno=" + AMaterno
-				+ ", curp=" + curp + ", rfc=" + rfc + ", genero=" + genero + ", fechaNacimiento=" + fechaNacimiento
-				+ ", activo=" + activo + ", tblDireccion=" + tblDireccion + ", tblContacto=" + tblContacto
-				+ ", tblFormacionAcademica=" + tblFormacionAcademicas + ", relUsuarioRols=" + relUsuarioRols + "]";
-	}	
-	
+				+ ", username=" + username + ", password=" + password + ", curp=" + curp + ", rfc=" + rfc + ", genero="
+				+ genero + ", fechaNacimiento=" + fechaNacimiento + ", activo=" + activo + ", tblDireccion="
+				+ tblDireccion + ", tblContacto=" + tblContacto + ", tblFormacionAcademicas=" + tblFormacionAcademicas
+				+ ", tblSolicitudes=" + tblSolicitudes + ", relUsuarioRols=" + relUsuarioRols + "]";
+	}
+
 	public void generarUsuario() {
 		this.username = this.rfc;
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		

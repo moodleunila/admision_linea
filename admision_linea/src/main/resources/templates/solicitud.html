@@ -210,6 +210,11 @@
   									<b>Instrucciones: </b> Agrega tu último grádo de estudios, en dado caso que hayas estudiado el mismo nivel varias veces (por ejemplo dos licenciaturas, agregalas)
 								</div>
 				  			</div>
+				  			<div id="error-facademica" class="oculto">
+						    	<div class="alert alert-danger" role="alert">
+  									Agregue por lo menos un nivel educativo
+								</div>
+						    </div>
 				  			<div class="col-md-12 mb-12">				  												
 								<button type="button" class="btn btn-outline-primary" id="agregar-nivel">
 								    + Agregar nivel educativo
@@ -250,10 +255,10 @@
 						      	<div class="invalid-feedback">
 						        	Por favor captura el título de licencitura
 						      	</div>
-						    </div>
+						    </div>						    
 						    <div class="col-md-12 mb-12 form-nuevo oculto">
 						    	<center>
-							    	<button type="button" class="btn btn-outline-primary" id="registrar-nivel">
+							    	<button type="button" class="btn btn-outline-success" id="registrar-nivel">
 									    + Agregar nivel educativo
 									</button>
 								</center>					    		
@@ -272,7 +277,8 @@
 								  	</thead>
 								  	<tbody id="cuerpo-tabla">								    	
 								  	</tbody>
-								</table>					    		
+								</table>
+								<input type="hidden" id="niveles-educativos" name="nivelesString"/>					    		
 					    	</div>
 				  		</div>				  		
 				  	</div>		
@@ -282,16 +288,16 @@
 				  		<div class="form-row">
 				  			<div class="col-md-12 mb-12">
 				  				<div class="alert alert-info" role="alert">				  				
-  									<b>Instrucciones: </b> Selecciona la oferta educativa de tu agrado
+  									<b>Instrucciones: </b> Selecciona la modalidad y posteriormente la oferta educativa de tu agrado
 								</div>
-				  			</div>
-				  			<div class="col-md-4 mb-3">					    		
+				  			</div>				  			
+				  			<div class="col-md-4 mb-3" id="oferta-academica-select">					    		
 				    			<div class="input-group mb-3">
 						  			<div class="input-group-prepend">
-							    		<label class="input-group-text" for="catGradoEstudios">*Oferta educativa: </label>
+							    		<label class="input-group-text" for="catOfertaAcademica">*Oferta educativa: </label>
 							  		</div>
-							  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
-										<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
+							  		<select class="custom-select" id="catOfertaAcademica" name="idOfertaAcademica">
+										<option th:each="oferta : ${ofertas}" th:value="${oferta.id}" th:text="${oferta.nombre}">Wireframe</option>
 							  		</select>
 								</div>
 					    	</div>	

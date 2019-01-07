@@ -19,9 +19,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
     	
     	// Public pages
+		//
         http.authorizeRequests().antMatchers("/").permitAll();
         http.authorizeRequests().antMatchers("/solicitud").permitAll();
-        http.authorizeRequests().antMatchers("/distribuir").permitAll();        
+        http.authorizeRequests().antMatchers("/distribuir").permitAll(); 
+  
+        
+
 
 //        // Private pages (all other pages)
 //        http.authorizeRequests().antMatchers("/home").hasAnyRole("USER");
