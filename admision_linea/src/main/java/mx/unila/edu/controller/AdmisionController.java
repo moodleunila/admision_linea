@@ -1,11 +1,13 @@
 package mx.unila.edu.controller;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import mx.unila.edu.bos.AdmisionBOS;
+import mx.unila.edu.model.CatGradoEstudios;
 import mx.unila.edu.model.RelUsuarioRol;
 import mx.unila.edu.model.TblContacto;
 import mx.unila.edu.model.TblDireccion;
@@ -44,8 +46,7 @@ public class AdmisionController {
 	@RequestMapping("/solicitud")
 	public String solicitud(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, Long idOfertaAcademica, String nivelesString) {
 		user = this.asignarValores(user, direction, contacto, nivelesString, idOfertaAcademica);		
-		model.addAttribute("user", user);
-		System.out.println(user.toString());
+		model.addAttribute("user", user);		
 		return "precarga";
 	}
 	
@@ -58,7 +59,7 @@ public class AdmisionController {
 		else
 			direccionar = this.almacenar(model, user, direction, contacto, academica);
 		return direccionar;
-	}	
+	}
 		
 	public String editar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica[] academica) {
 		
@@ -76,16 +77,15 @@ public class AdmisionController {
 	}
 
 	public TblUsuario asignarValores(TblUsuario user, TblDireccion direction, TblContacto contacto, String nivelesString, Long idOfertaAcademica) {
-		TblSolicitud solicitud = new TblSolicitud();
-		AdmisionBOS admisionBos = new AdmisionBOS();
+		TblSolicitud solicitud = new TblSolicitud();		
 		solicitud.setCatOfertaAcademica(ofertaAcademicaRepository.getOne(idOfertaAcademica));
 		solicitud.setCatEstadoSolicitud(estadoSolicitudRepository.getOne(1L));
 		direction.setCatEstado(estadoRepository.getOne(direction.getCatEstado().getId()));
 		direction.setCatPais(paisRepository.getOne(direction.getCatPais().getId()));		
 		user.setTblDireccion(direction);
 		user.setTblContacto(contacto);
-		user.setTblFormacionAcademicas(admisionBos.obtenerFormaciones(nivelesString));
-		solicitud.setUsuario(user);
+		user.setTblFormacionAcademicas(this.obtenerFormaciones(nivelesString));
+		System.out.println("Detente");
 		return user;
 	}
 	
@@ -100,5 +100,23 @@ public class AdmisionController {
 	private void generarRol(TblUsuario user, Long idRol) {
 		RelUsuarioRol rol = new RelUsuarioRol(rolRepository.getOne(idRol), user, true);
 		usuarioRolRepository.save(rol);
+	}
+	
+	public Set<TblFormacionAcademica> obtenerFormaciones(String formaciones){
+		Set<TblFormacionAcademica> listaFormaciones = new HashSet<TblFormacionAcademica>(0);
+		String[] registros = formaciones.split("#");		
+		for(String registro : registros) {
+			String[] campos = registro.split(">");
+			TblFormacionAcademica formacion = new TblFormacionAcademica();							
+			formacion.setInstitucion(campos[0]);
+			formacion.setDocumentoObtenido(campos[1]);
+			Long id = Long.parseLong(campos[2]);
+			System.out.println("Detente");
+			CatGradoEstudios grado = gradoRepository.getOne(id);			
+			formacion.setCatGradoEstudios(grado);
+			formacion.setNombre(campos[3]);
+			listaFormaciones.add(formacion);
+		}
+		return listaFormaciones;
 	}
 }

@@ -13,21 +13,38 @@
 	<body>
 		<form id="form-precarga" class="form-precarga" method="post" th:action="@{/distribuir}" >
 			<div class="container">
+				<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
 				<h1 class="centrado">Confirmar datos</h1>
 				<hr/>
+				<!-- ######################## INSTRUCCIONES ######################## -->
+					<div class="col-md-12 mb-12">
+	  					<div class="alert alert-primary" role="alert">				  				
+							<b>Instrucciones: </b> Realiza la revisión de los datos que has capturado, si requieres editar algún dato presiona el botón "Editar", en caso contrario confirma el registro de solicitud</div>
+		  			</div>
+	  			<!-- ######################## FIN INSTRUCCIONES ######################## -->
+	  			
+	  			<!-- ######################## PASOS ######################## -->
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 				  	<li class="nav-item">
-				    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">1. Datos personales</a>
+				    	<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Paso 1. Datos personales</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">2. Dirección</a>
+				    	<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Paso 2. Dirección</a>
 				  	</li>
 				  	<li class="nav-item">
-				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">3. Datos académicos</a>
+				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Paso 3. Datos académicos</a>
+				  	</li>
+				  	<li class="nav-item">
+				    	<a class="nav-link" id="contact-tab" data-toggle="tab" href="#oferta" role="tab" aria-controls="oferta" aria-selected="false">Paso 4. Oferta académica</a>
 				  	</li>
 				</ul>
-				<!-- Datos personales -->
+				<!-- ######################## FIN PASOS ######################## -->
+								
+				<!-- ######################## C O N T E N I D O  ######################## -->
 				<div class="tab-content" id="myTabContent">
+					
+					
+					<!-- ######################## DATOS PERSONALES  ######################## -->
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				  		<div class="form-row">
 					    	<div class="col-md-4 mb-3">				    		
@@ -108,9 +125,10 @@
 						    </div>					    
 				  		</div>
 			  		</div>
+			  		<!-- ######################## FIN DATOS PERSONALES  ######################## -->
 			  		
 			  		
-			  		<!-- Dirección -->
+			  		<!-- ######################## DIRECCIÓN  ######################## -->
 				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
 					    	<div class="col-md-6 mb-3">
@@ -178,48 +196,39 @@
 					  		<div class="col-md-4 mb-3">
 					    	</div>
 				  		</div>
-				  	</div>
+				  	</div>	
+				  	<!-- ######################## FIN DIRECCIÓN  ######################## -->
 				  	
-				  	<input type="hidden" id="value-universidad-origen" th:value="${user.tblFormacionAcademica.universidadOrigen}"/>
-			    	<input type="hidden" id="value-titulo-licenciatura" th:value="${user.tblFormacionAcademica.tituloLicenciatura}"/>
-				  	<!-- Datos académicos -->
-				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-				  		<div class="form-row">
-					    	<div class="col-md-4 mb-3">			    			
-					  			<label for="ultimoGrado">Último grado de estudios</label> <!-- is-invalid -->
-					  			<div class="alert alert-info" role="alert">
-						  			<p id="ultimoGrado" th:text="${user.tblFormacionAcademica.catGradoEstudios.nombre}"></p>
-						  			<input type="hidden" id="ultimoGrado-val" th:value="${user.tblFormacionAcademica.catGradoEstudios.id}" name="catGradoEstudios.id"/>
-					  			</div>							
-					    	</div>
-					    	
-					    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
-						    	<label for="universidadOrigen">Universidad de origen</label> <!-- is-invalid -->
-						    	<div class="alert alert-info" role="alert">
-						      		<p id="universidadOrigen" th:text="${user.tblFormacionAcademica.universidadOrigen}"></p>
-						      		<input type="hidden" id="universidadOrigen-val" th:value="${user.tblFormacionAcademica.universidadOrigen}" name="universidadOrigen"/>
-					      		</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
-					    		<label for="tituloLicenciatura">Código postal</label> <!-- is-invalid -->
-					    		<div class="alert alert-info" role="alert">
-						      		<p id="tituloLicenciatura" th:text="${user.tblFormacionAcademica.tituloLicenciatura}"></p>
-						      		<input type="hidden" id="tituloLicenciatura-val" th:value="${user.tblFormacionAcademica.tituloLicenciatura}" name="tituloLicenciatura"/>
-					      		</div>
-						    </div>
+				  	<!-- ######################## DATOS ACADÉMICOS  ######################## -->
+				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="form-row">
+					    	<div th:if="${user.tblFormacionAcademicas.size() > 0}" class="col-md-12 mb-12">		
+								<div class="table-responsive">		
+									<table class="table table-hover">
+										<thead>
+											<tr>							
+												<th scope="col">Institución</th>
+												<th scope="col">Documento obtenido</th>
+												<th scope="col">Grado de estudios</th>
+												<th scope="col">Título</th>
+											</tr>
+										</thead>
+										<tbody>
+		   									<th:block th:each="formacion : ${user.tblFormacionAcademicas}">
+		      									<tr>	      					
+		      										<td th:text="${formacion.institucion}">...</td>
+		         									<td th:text="${formacion.documentoObtenido}">...</td>	         						       					
+		         									<td th:text="${formacion.catGradoEstudios.nombre}">...</td>
+		         									<td th:text="${formacion.nombre}">...</td>
+		      									</tr>      					
+		   									</th:block>
+	   									</tbody>
+									</table>
+								</div>
+							</div>					    	
 				  		</div>
-				  		<input type="hidden" id="bandera" class="bandera" name="bandera"/>
-				  		<div class="form-row">	
-				  			<div class="col-md-4 mb-3">
-				  			</div>		  			
-				    		<div class="col-md-4 mb-3 centrado">
-				    			<button type="button" class="btn btn-primary" onclick="return editar();">Editar</button>
-				    			<button type="button" class="btn btn-success" onclick="return almacenar();">Confirmar</button>
-					    	</div>
-					    	<div class="col-md-4 mb-3">
-				  			</div>
-				  		</div>	
-				  	</div>			  			  	
+				  	</div>  
+				  	<!-- ######################## FIN DATOS ACADÉMICOS  ######################## -->				  			  	
 			  	</div>
 			</div>			
 		</form>

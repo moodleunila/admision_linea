@@ -90,8 +90,8 @@ $(document).ready(function() {
 			var consecutivo = $("#cuerpo-tabla > tr").length + 1;
 			var hiddenNiveles = $("#niveles-educativos").val();
 			if($("#tituloLicenciatura").val() == ""){
-				hiddenNiveles += $("#institucion").val() + ">" + $("#documento").val() + ">" + $("#catGradoEstudios option:selected").val() + ">----#";
-				var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>----</td>" + "</tr>";
+				hiddenNiveles += $("#institucion").val() + ">" + $("#documento").val() + ">" + $("#catGradoEstudios option:selected").val() + ">Sin dato#";
+				var registro = "<tr>" +	"<th scope='row'>" + consecutivo +"</th>" + "<td>" + $("#institucion").val() + "</td>" + "<td>" + $("#documento").val() + "</td>" + "<td>" + $('select[name="catGradoEstudios.id"] option:selected').text() + "</td>" +"<td>Sin dato</td>" + "</tr>";
 				$("#cuerpo-tabla").append(registro);
 			}
 			else{

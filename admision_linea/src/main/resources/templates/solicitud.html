@@ -23,303 +23,316 @@
 	</head>
 	<body>
 		<div class="container">
+		
+			<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->			
 			<h1 class="centrado">Solicitud de registro</h1>
 			<hr/>
 			<form class="solicitud" id="solicitud" th:action="@{/solicitud}" method="post">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  	<li class="nav-item">
-				    	<a class="nav-link active negritas" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">1. Datos personales</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link negritas" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">2. Dirección</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link negritas" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">3. Datos académicos</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link negritas" id="oferta-tab" data-toggle="tab" href="#oferta" role="tab" aria-controls="oferta" aria-selected="false">4. Oferta académica</a>
-				  	</li>				  	
-				</ul>
-				<!-- Datos personales -->
+				<!-- ######################## INSTRUCCIONES ######################## -->
+					<div class="col-md-12 mb-12">
+	  					<div class="alert alert-info" role="alert">				  				
+							<b>Instrucciones: </b> Para completar el registro realiza los siguientes pasos que aparecen a continuación: </div>
+		  			</div>
+	  			<!-- ######################## FIN INSTRUCCIONES ######################## -->
+	  			
+	  			<!-- ######################## PASOS ######################## -->
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link active negritas" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+					    		Paso 1. Datos personales <br/>				    		
+				    			<img alt="" src="imagenes/30446.svg" width="30%" />			    			
+			    			</a>				    	
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+					    		Paso 2. Dirección <br/>
+					    		<img alt="" src="imagenes/direccion.jpg" width="33%" />
+				    		</a>
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+					    		Paso 3. Datos académicos<br/>
+					    		<img alt="" src="imagenes/academicos.png" width="33%" />
+				    		</a>
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="oferta-tab" data-toggle="tab" href="#oferta" role="tab" aria-controls="oferta" aria-selected="false">
+					    		Paso 4. Oferta académica <br/>
+					    		<img alt="" src="imagenes/posgrado.png" width="18%" />
+				    		</a>
+					  	</li>				  	
+					</ul>
+				<!-- ######################## FIN PASOS ######################## -->
+				
+				<!-- ######################## C O N T E N I D O  ######################## -->
 				<div class="tab-content" id="myTabContent">
-					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-				  		<div class="form-row">
-				  			<div class="col-md-12 mb-12">
-				  				<div class="alert alert-info" role="alert">				  				
-  									<b>Instrucciones: </b> Captura todos los datos personales que aparecen a continuación, aquellos campos que tengan un asterísco (*) son obligatorios
-								</div>
-				  			</div>
-					    	<div class="col-md-4 mb-3">
-						    	<label for="nombre">*Nombre(s)</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="nombre" placeholder="Nombre" value="" name="nombre"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el nombre
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="APaterno">*Apellido paterno</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="APaterno" placeholder="Paterno" value="" name="APaterno"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el apellido paterno
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="nombre">*Apellido materno</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="AMaterno" placeholder="Materno" value="" name="AMaterno"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el apellido materno
-						      	</div>
-						    </div>
-				  		</div>
-					  	<div class="form-row">
-					    	<div class="col-md-4 mb-3">
-						    	<label for="email">*Correo electrónico</label> <!-- is-invalid -->
-						      	<input type="email" class="form-control " id="email" placeholder="Correo electrónico" value="" name="email"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura un correo electrónico válido 
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="curp">*CURP</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="curp" placeholder="Clave Única de Registro Poblacional" value="" name="curp"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura la CURP
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="rfc">*RFC</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="rfc" placeholder="Registro Federal de Contribuyentes" value="" name="rfc"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el RFC
-						      	</div>
-						    </div>
-					  	</div>
-					  	<div class="form-row">
-						    <div class="col-md-4 mb-3">
-						    	<label for="telefonoLocal">*Teléfono</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="telefonoLocal" placeholder="Local" value="" name="telefonoLocal"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el teléfono local
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3">
-					    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="telefonoCelular" placeholder="Celular" name="telefonoCelular"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el teléfono celular
-						      	</div>
-						    </div>
-						    <div class="col-md-4 mb-3 centrado">
-					    		<p>*Género</p>
-						    	<div class="form-check">
-							  		<input class="form-check-input" type="radio" name="genero" id="genero1" value="femenino" checked="checked"/>
-							  		<label class="form-check-label" for="genero1">
-							    		Femenino
-							  		</label>
-								</div>
-								<div class="form-check">
-								  	<input class="form-check-input" type="radio" name="genero" id="genero2" value="masculino"/>
-								  	<label class="form-check-label" for="genero2">
-								    	Masculino
-								  	</label>
-								</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3">
-					    		<label for="fechaNacimiento">Fecha de nacimiento</label> <!-- is-invalid -->
-					      		<input type="text" class="form-control" id="fechaNacimiento" placeholder="Fecha de nacimiento" name="fechaNacimiento"/>
-					      		<div class="invalid-feedback">
-					        		Por favor captura la fecha de nacimiento
-					      		</div>
-						    </div>
-				  		</div>
-			  		</div>
-			  		
-			  		
-			  		<!-- Dirección -->
-				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-						<div class="form-row">
-							<div class="col-md-12 mb-12">
-				  				<div class="alert alert-info" role="alert">				  				
-  									<b>Instrucciones: </b> Captura tu dirección, aquellos campos que tengan un asterísco (*) son obligatorios
-								</div>
-				  			</div>
-					    	<div class="col-md-6 mb-3">
-						    	<label for="calle">*Calle</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="calle" placeholder="Calle" value="" name="calle"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura la calle
-						      	</div>
-						    </div>
-						    <div class="col-md-6 mb-3">
-						    	<label for="colonia">*Colonia</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="colonia" placeholder="Colonia" value="" name="colonia"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura la colonia
-						      	</div>
-						    </div>
-				  		</div>
-				  		<div class="form-row">
-				  			<div class="col-md-4 mb-3">
-						    	<label for="APaterno">Número interior</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="numeroInterno" placeholder="Número interior" value="" name="numeroInterno"/>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="nombre">Número exterior</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="numeroExterno" placeholder="Número exterior" value="" name="numeroExterno"/>
-						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<label for="codigoPostal">*Código postal</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="codigoPostal" placeholder="codigoPostal" value="" name="codigoPostal"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el código postal
-						      	</div>
-						    </div>
-					    </div>
-					    <div class="form-row">
-					    	<div class="col-md-4 mb-3">
-					    	<p>*País de residencia:</p>
-							  	<select class="custom-select" id="catPais" name="catPais.id">							  		
-									<option th:each="pais : ${paises}" th:value="${pais.id}" th:text="${pais.nombre}">wire</option>									
-						  		</select>
-					    	</div>
-						    <div class="col-md-4 mb-3">
-						    	<div id="listado-estados">
-							    	<p>*Estado de residencia:</p>
-								  	<select class="custom-select" id="catEstado" name="catEstado.id">
-								  		<option th:each="estado : ${estados}" th:value="${estado.id}" th:text="${estado.nombre}">wire</option>
-							  		</select>
-						  		</div>
-						  		
-						  		<div class="oculto" id="ciudad-internacional">
-						  			<label for="ciudad">Ciudad o provincia*</label> <!-- is-invalid -->
-							      	<input type="text" class="form-control " id="ciudad" placeholder="Ciudad o provincia" value="" name="ciudadInternacional"/>
+				
+					<!-- ######################## DATOS PERSONALES  ######################## -->
+						<br/>
+						<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+					  		<div class="form-row">				  			
+						    	<div class="col-md-4 mb-3">
+							    	<label for="nombre">*Nombre(s)</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="nombre" placeholder="Nombre" value="" name="nombre"/>
 							      	<div class="invalid-feedback">
-						        		Por favor capture la ciudad o provincia
+							        	Por favor captura el nombre
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="APaterno">*Apellido paterno</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="APaterno" placeholder="Paterno" value="" name="APaterno"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el apellido paterno
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="nombre">*Apellido materno</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="AMaterno" placeholder="Materno" value="" name="AMaterno"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el apellido materno
+							      	</div>
+							    </div>
+					  		</div>
+						  	<div class="form-row">
+						    	<div class="col-md-4 mb-3">
+							    	<label for="email">*Correo electrónico</label> <!-- is-invalid -->
+							      	<input type="email" class="form-control " id="email" placeholder="Correo electrónico" value="" name="email"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura un correo electrónico válido 
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="curp">*CURP</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="curp" placeholder="Clave Única de Registro Poblacional" value="" name="curp"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura la CURP
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="rfc">*RFC</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="rfc" placeholder="Registro Federal de Contribuyentes" value="" name="rfc"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el RFC
+							      	</div>
+							    </div>
+						  	</div>
+						  	<div class="form-row">
+							    <div class="col-md-4 mb-3">
+							    	<label for="telefonoLocal">*Teléfono</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="telefonoLocal" placeholder="Local" value="" name="telefonoLocal"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el teléfono local
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3">
+						    		<label for="telefonoCelular">Teléfono</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="telefonoCelular" placeholder="Celular" name="telefonoCelular"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el teléfono celular
+							      	</div>
+							    </div>
+							    <div class="col-md-4 mb-3 centrado">
+						    		<p>*Género</p>
+							    	<div class="form-check">
+								  		<input class="form-check-input" type="radio" name="genero" id="genero1" value="femenino" checked="checked"/>
+								  		<label class="form-check-label" for="genero1">
+								    		Femenino
+								  		</label>
+									</div>
+									<div class="form-check">
+									  	<input class="form-check-input" type="radio" name="genero" id="genero2" value="masculino"/>
+									  	<label class="form-check-label" for="genero2">
+									    	Masculino
+									  	</label>
+									</div>
+						    	</div>
+						    	<div class="col-md-4 mb-3">
+						    		<label for="fechaNacimiento">Fecha de nacimiento</label> <!-- is-invalid -->
+						      		<input type="text" class="form-control" id="fechaNacimiento" placeholder="Fecha de nacimiento" name="fechaNacimiento"/>
+						      		<div class="invalid-feedback">
+						        		Por favor captura la fecha de nacimiento
 						      		</div>
-					    		</div>
-					  		</div>					  		
+							    </div>
+					  		</div>
 				  		</div>
-				  	</div>
-				  	
-				  	
-				  	<!-- Datos académicos -->
-				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-				  		<div class="form-row">
-				  			<div class="col-md-12 mb-12">
-				  				<div class="alert alert-info" role="alert">				  				
-  									<b>Instrucciones: </b> Agrega tu último grádo de estudios, en dado caso que hayas estudiado el mismo nivel varias veces (por ejemplo dos licenciaturas, agregalas)
-								</div>
-				  			</div>
-				  			<div id="error-facademica" class="oculto">
-						    	<div class="alert alert-danger" role="alert">
-  									Agregue por lo menos un nivel educativo
-								</div>
+			  		<!-- ######################## FIN DATOS PERSONALES  ######################## -->
+			  		
+			  		
+			  		<!-- ######################## DIRECCIÓN  ######################## -->
+					  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+							<div class="form-row">								
+						    	<div class="col-md-6 mb-3">
+							    	<label for="calle">*Calle</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="calle" placeholder="Calle" value="" name="calle"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura la calle
+							      	</div>
+							    </div>
+							    <div class="col-md-6 mb-3">
+							    	<label for="colonia">*Colonia</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="colonia" placeholder="Colonia" value="" name="colonia"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura la colonia
+							      	</div>
+							    </div>
+					  		</div>
+					  		<div class="form-row">
+					  			<div class="col-md-4 mb-3">
+							    	<label for="APaterno">Número interior</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="numeroInterno" placeholder="Número interior" value="" name="numeroInterno"/>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="nombre">Número exterior</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="numeroExterno" placeholder="Número exterior" value="" name="numeroExterno"/>
+							    </div>
+							    <div class="col-md-4 mb-3">
+							    	<label for="codigoPostal">*Código postal</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="codigoPostal" placeholder="codigoPostal" value="" name="codigoPostal"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el código postal
+							      	</div>
+							    </div>
 						    </div>
-				  			<div class="col-md-12 mb-12">				  												
-								<button type="button" class="btn btn-outline-primary" id="agregar-nivel">
-								    + Agregar nivel educativo
-								</button>
-							</div>								
-							<div class="col-md-4 mb-3 form-nuevo oculto">
-								<br/>										
-			  					<label for="institucion">Institución *</label> <!-- is-invalid -->
-				      			<input type="text" class="form-control " id="institucion" placeholder="Institución" value="" name="institucion"/>
-				      			<div class="invalid-feedback">
-			        				Por favor capture el nombre de la institución
-			      				</div>
-		      				</div>	
-			      			<div class="col-md-4 mb-3 form-nuevo oculto">
-			      				<br/>		
-			      				<label for="documento">Documento obtenido*</label> <!-- is-invalid -->
-				      			<input type="text" class="form-control " id="documento" placeholder="Documento obtenido" value="" name="documento"/>
-				      			<div class="invalid-feedback">
-			        				Por favor capture el documento obtenido
-			      				</div>					    																													    			
-		    				</div>
-		    				<div class="col-md-4 mb-3 form-nuevo oculto">
-					    		<br/>
-					    		<br/>
-				    			<div class="input-group mb-3">
-						  			<div class="input-group-prepend">
-							    		<label class="input-group-text" for="catGradoEstudios">*Grado de estudios</label>
-							  		</div>
-							  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
-										<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
+						    <div class="form-row">
+						    	<div class="col-md-4 mb-3">
+						    	<p>*País de residencia:</p>
+								  	<select class="custom-select" id="catPais" name="catPais.id">							  		
+										<option th:each="pais : ${paises}" th:value="${pais.id}" th:text="${pais.nombre}">wire</option>									
 							  		</select>
-								</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3 oculto" id="titulo-licenciatura">
-					    	<br/>
-					    		<label for="tituloLicenciatura">*Nombre del título o especialidad</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" value="" name="tituloLicenciatura"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el título de licencitura
-						      	</div>
-						    </div>						    
-						    <div class="col-md-12 mb-12 form-nuevo oculto">
-						    	<center>
-							    	<button type="button" class="btn btn-outline-success" id="registrar-nivel">
+						    	</div>
+							    <div class="col-md-4 mb-3">
+							    	<div id="listado-estados">
+								    	<p>*Estado de residencia:</p>
+									  	<select class="custom-select" id="catEstado" name="catEstado.id">
+									  		<option th:each="estado : ${estados}" th:value="${estado.id}" th:text="${estado.nombre}">wire</option>
+								  		</select>
+							  		</div>
+							  		
+							  		<div class="oculto" id="ciudad-internacional">
+							  			<label for="ciudad">Ciudad o provincia*</label> <!-- is-invalid -->
+								      	<input type="text" class="form-control " id="ciudad" placeholder="Ciudad o provincia" value="" name="ciudadInternacional"/>
+								      	<div class="invalid-feedback">
+							        		Por favor capture la ciudad o provincia
+							      		</div>
+						    		</div>
+						  		</div>					  		
+					  		</div>
+					  	</div>
+				  	<!-- ######################## FIN DIRECCIÓN  ######################## -->
+				  	
+				  	
+				  	<!-- ######################## DATOS ACADÉMICOS  ######################## -->
+					  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+					  		<div class="form-row">					  			
+					  			<div id="error-facademica" class="oculto">
+							    	<div class="alert alert-danger" role="alert">
+	  									Agregue por lo menos un nivel educativo
+									</div>
+							    </div>
+					  			<div class="col-md-12 mb-12">				  												
+									<button type="button" class="btn btn-outline-primary" id="agregar-nivel">
 									    + Agregar nivel educativo
 									</button>
-								</center>					    		
-					    	</div>
-					    	<div class="col-md-12 mb-12 oculto" id="tabla-datos-academicos">
-					    	<br/>
-					    		<table class="table table-hover">
-							  		<thead>
-								    	<tr>
-								      		<th scope="col">#</th>
-								      		<th scope="col">Institución</th>
-								      		<th scope="col">Documento obtenido</th>
-								      		<th scope="col">Grado de estudios</th>
-								      		<th scope="col">Título</th>
-							    		</tr>
-								  	</thead>
-								  	<tbody id="cuerpo-tabla">								    	
-								  	</tbody>
-								</table>
-								<input type="hidden" id="niveles-educativos" name="nivelesString"/>					    		
-					    	</div>
-				  		</div>				  		
-				  	</div>		
+								</div>								
+								<div class="col-md-4 mb-3 form-nuevo oculto">
+									<br/>										
+				  					<label for="institucion">Institución *</label> <!-- is-invalid -->
+					      			<input type="text" class="form-control " id="institucion" placeholder="Institución" value="" name="institucion"/>
+					      			<div class="invalid-feedback">
+				        				Por favor capture el nombre de la institución
+				      				</div>
+			      				</div>	
+				      			<div class="col-md-4 mb-3 form-nuevo oculto">
+				      				<br/>		
+				      				<label for="documento">Documento obtenido*</label> <!-- is-invalid -->
+					      			<input type="text" class="form-control " id="documento" placeholder="Documento obtenido" value="" name="documento"/>
+					      			<div class="invalid-feedback">
+				        				Por favor capture el documento obtenido
+				      				</div>					    																													    			
+			    				</div>
+			    				<div class="col-md-4 mb-3 form-nuevo oculto">
+						    		<br/>
+						    		<br/>
+					    			<div class="input-group mb-3">
+							  			<div class="input-group-prepend">
+								    		<label class="input-group-text" for="catGradoEstudios">*Grado de estudios</label>
+								  		</div>
+								  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
+											<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
+								  		</select>
+									</div>
+						    	</div>
+						    	<div class="col-md-4 mb-3 oculto" id="titulo-licenciatura">
+						    	<br/>
+						    		<label for="tituloLicenciatura">*Nombre del título o especialidad</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" value="" name="tituloLicenciatura"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el título de licencitura
+							      	</div>
+							    </div>						    
+							    <div class="col-md-12 mb-12 form-nuevo oculto">
+							    	<center>
+								    	<button type="button" class="btn btn-outline-success" id="registrar-nivel">
+										    + Guardar nivel educativo
+										</button>
+									</center>					    		
+						    	</div>
+						    	<div class="col-md-12 mb-12 oculto" id="tabla-datos-academicos">
+						    	<br/>
+						    		<table class="table table-hover">
+								  		<thead>
+									    	<tr>
+									      		<th scope="col">#</th>
+									      		<th scope="col">Institución</th>
+									      		<th scope="col">Documento obtenido</th>
+									      		<th scope="col">Grado de estudios</th>
+									      		<th scope="col">Título</th>
+								    		</tr>
+									  	</thead>
+									  	<tbody id="cuerpo-tabla">								    	
+									  	</tbody>
+									</table>
+									<input type="hidden" id="niveles-educativos" name="nivelesString"/>					    		
+						    	</div>
+					  		</div>				  		
+					  	</div>		
+				  	<!-- ######################## FIN DATOS ACADÉMICOS  ######################## -->
 				  	
-				  	<!-- Oferta académica -->
-				  	<div class="tab-pane fade" id="oferta" role="tabpane" aria-labelledby="oferta-tab">
-				  		<div class="form-row">
-				  			<div class="col-md-12 mb-12">
-				  				<div class="alert alert-info" role="alert">				  				
-  									<b>Instrucciones: </b> Selecciona la modalidad y posteriormente la oferta educativa de tu agrado
-								</div>
-				  			</div>				  			
-				  			<div class="col-md-4 mb-3" id="oferta-academica-select">					    		
-				    			<div class="input-group mb-3">
-						  			<div class="input-group-prepend">
-							    		<label class="input-group-text" for="catOfertaAcademica">*Oferta educativa: </label>
-							  		</div>
-							  		<select class="custom-select" id="catOfertaAcademica" name="idOfertaAcademica">
-										<option th:each="oferta : ${ofertas}" th:value="${oferta.id}" th:text="${oferta.nombre}">Wireframe</option>
-							  		</select>
-								</div>
-					    	</div>	
-					    	<div class="col-md-12 mb-12">
-					    		<center>
-				    				<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>
-			    				</center>
-					    	</div>				    						    	
-				  		</div>
-				  	</div>				  	
 				  	
-				  	<!--  <Elaborar el tab de la Ofert  a>-->				  	
-				  			  	
-				  	<div class="form-row error" style="display: none;">
-				    	<div class="col-md-12 mb-3 centrado">
-				    		<div class="alert alert-danger" role="alert">
-	  							Existen errores en los campos
-							</div>
-					    </div>
-				  	</div>
+				  	<!-- ######################## OFERTA ACADÉMICA  ######################## -->
+					  	<div class="tab-pane fade" id="oferta" role="tabpane" aria-labelledby="oferta-tab">
+					  		<div class="form-row">					  						  			
+					  			<div class="col-md-6 mb-6" id="oferta-academica-select">					    		
+					    			<div class="input-group mb-3">
+							  			<div class="input-group-prepend">
+								    		<label class="input-group-text" for="catOfertaAcademica">*Oferta educativa: </label>
+								  		</div>
+								  		<select class="custom-select" id="catOfertaAcademica" name="idOfertaAcademica">
+											<option th:each="oferta : ${ofertas}" th:value="${oferta.id}" th:text="${oferta.nombre}">Wireframe</option>
+								  		</select>
+									</div>
+						    	</div>	
+						    	<div class="col-md-12 mb-12 centrado">						    		
+				    				<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>				    				
+						    	</div>				    						    	
+					  		</div>
+					  	</div>
+				  	<!-- ######################## FIN OFERTA ACADÉMICA  ######################## -->				  	
+				  	
+				  	<!-- ######################## ERROR CAMPOS ######################## -->				  			  	
+					  	<div class="form-row error" style="display: none;">
+					    	<div class="col-md-12 mb-3 centrado">
+					    		<div class="alert alert-danger" role="alert">
+		  							Existen errores en los campos
+								</div>
+						    </div>
+					  	</div>
+				  	<!-- ######################## FIN ERROR CAMPOS ######################## -->
+				  	
 			  	</div>
+			  	<!-- ######################## F I N   C O N T E N I D O  ######################## -->
 			</form>
 		</div>
+		<!-- ######################## FIN DE LA SOLICITUD DE REGISTRO ######################## -->
 	</body>
 </html>
