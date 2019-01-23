@@ -9,6 +9,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 		<script type="text/javascript" src="js/formulario.js"></script>
+		<script type="text/javascript" src="js/editar-solicitud.js"></script>
 		<link rel="stylesheet" href="css/generalidades.css"/>
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
@@ -22,26 +23,55 @@
 		</script>
 	</head>
 	<body>
-		<div class="container">
+		<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
+		<div class="container">				
 			<h1 class="centrado">Editar la Solicitud de registro</h1>
 			<hr/>
 			<form class="solicitud" id="solicitud" th:action="@{/solicitud}" method="post">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-				  	<li class="nav-item">
-				    	<a class="nav-link active negritas" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">1. Datos personales</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link negritas" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">2. Dirección</a>
-				  	</li>
-				  	<li class="nav-item">
-				    	<a class="nav-link negritas" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">3. Datos académicos</a>
-				  	</li>
-				</ul>
-				<!-- Datos personales -->
+				<!-- ######################## INSTRUCCIONES ######################## -->
+					<div class="col-md-12 mb-12">
+	  					<div class="alert alert-info" role="alert">				  				
+							<b>Instrucciones: </b> Para completar el registro realiza los siguientes pasos que aparecen a continuación: </div>
+		  			</div>
+	  			<!-- ######################## FIN INSTRUCCIONES ######################## -->
+				
+				<!-- ######################## PASOS ######################## -->
+					<ul class="nav nav-tabs" id="myTab" role="tablist">
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link active negritas" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">
+					    		Paso 1. Datos personales <br/>				    		
+				    			<img alt="" src="imagenes/30446.svg" width="30%" />			    			
+			    			</a>				    	
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">
+					    		Paso 2. Dirección <br/>
+					    		<img alt="" src="imagenes/direccion.jpg" width="33%" />
+				    		</a>
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">
+					    		Paso 3. Datos académicos<br/>
+					    		<img alt="" src="imagenes/academicos.png" width="33%" />
+				    		</a>
+					  	</li>
+					  	<li class="nav-item centrado">
+					    	<a class="nav-link negritas" id="oferta-tab" data-toggle="tab" href="#oferta" role="tab" aria-controls="oferta" aria-selected="false">
+					    		Paso 4. Oferta académica <br/>
+					    		<img alt="" src="imagenes/posgrado.png" width="18%" />
+				    		</a>
+					  	</li>				  	
+					</ul>
+				<!-- ######################## FIN PASOS ######################## -->			
+				
+				<!-- ######################## C O N T E N I D O  ######################## -->
 				<div class="tab-content" id="myTabContent">
+					
+					<!-- ######################## DATOS PERSONALES  ######################## -->
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-				  		<div class="form-row">
+				  		<div class="form-row">				  			
 					    	<div class="col-md-4 mb-3">
+					    		<br/>
 						    	<label for="nombre">*Nombre(s)</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="nombre" placeholder="Nombre" th:value="${user.nombre}" name="nombre"/>
 						      	<div class="invalid-feedback">
@@ -49,6 +79,7 @@
 						      	</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
+						    	<br/>
 						    	<label for="APaterno">*Apellido paterno</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="APaterno" placeholder="Paterno" th:value="${user.APaterno}" name="APaterno"/>
 						      	<div class="invalid-feedback">
@@ -56,6 +87,7 @@
 						      	</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
+						    	<br/>
 						    	<label for="nombre">*Apellido materno</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="AMaterno" placeholder="Materno" th:value="${user.AMaterno}" name="AMaterno"/>
 						      	<div class="invalid-feedback">
@@ -125,12 +157,13 @@
 						    </div>
 				  		</div>
 			  		</div>
+			  		<!-- ######################## FIN DATOS PERSONALES  ######################## -->			  		
 			  		
-			  		
-			  		<!-- Dirección -->
+			  		<!-- ######################## DIRECCIÓN  ######################## -->
 				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
 					    	<div class="col-md-6 mb-3">
+					    		<br/>
 						    	<label for="calle">*Calle</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="calle" placeholder="Calle" th:value="${user.tblDireccion.calle}" name="calle"/>
 						      	<div class="invalid-feedback">
@@ -138,6 +171,7 @@
 						      	</div>
 						    </div>
 						    <div class="col-md-6 mb-3">
+						    	<br/>
 						    	<label for="colonia">*Colonia</label> <!-- is-invalid -->
 						      	<input type="text" class="form-control " id="colonia" placeholder="Colonia" th:value="${user.tblDireccion.colonia}" name="colonia"/>
 						      	<div class="invalid-feedback">
@@ -195,59 +229,138 @@
 					  		</div>					  		
 				  		</div>
 				  	</div>
+				  	<!-- ######################## FIN DIRECCIÓN  ######################## -->
 				  	
 				  	
-				  	<!-- Datos académicos -->
-				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-				  		<div class="form-row">
-					    	<div class="col-md-4 mb-3">
-					    		<br/>
-				    			<div class="input-group mb-3">
-						  			<div class="input-group-prepend">
-							    		<label class="input-group-text" for="catGradoEstudios">*Último grado de estudios</label>
-							  		</div>
-							  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
-										<option th:each="grado : ${gradosAcademicos}"
-									 		th:value="${grado.id}"
-									 		th:selected="${user.tblFormacionAcademica.catGradoEstudios.id} == *{grado.id}"
-										 	th:text="${grado.nombre}"></option>
-							  		</select>
-								</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3" style="display: none;" id="universidad-origen">
-						    	<label for="universidadOrigen">*Universidad de Origen</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="universidadOrigen" placeholder="Universidad de origen" th:value="${user.tblFormacionAcademica.universidadOrigen}" name="universidadOrigen"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el nombre de la universidad de origen
-						      	</div>
-					    	</div>
-					    	<div class="col-md-4 mb-3" style="display: none;" id="titulo-licenciatura">
-					    		<label for="tituloLicenciatura">*Título de licenciatura</label> <!-- is-invalid -->
-						      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" th:value="${user.tblFormacionAcademica.tituloLicenciatura}" name="tituloLicenciatura"/>
-						      	<div class="invalid-feedback">
-						        	Por favor captura el título de licencitura
-						      	</div>
-						    </div>
-				  		</div>
-				  		<div class="form-row">
-				  			<div class="col-md-4 mb-3">
-				  			</div>
-				    		<div class="col-md-4 mb-3 centrado">
-				    			<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>
-					    	</div>
-					    	<div class="col-md-4 mb-3">
-				  			</div>
-				  		</div>
-				  	</div>				  	
-				  	<div class="form-row error" style="display: none;">
-				    	<div class="col-md-12 mb-3 centrado">
-				    		<div class="alert alert-danger" role="alert">
-	  							Existen errores en los campos
+				  	<!-- ######################## DATOS ACADÉMICOS  ######################## -->
+				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="form-row">
+							<br/>
+							<div id="error-facademica" class="oculto">
+							    	<div class="alert alert-danger" role="alert">
+	  									Agregue por lo menos un nivel educativo
+									</div>
+							    </div>
+					  			<div class="col-md-12 mb-12">	
+					  				<br/>			  												
+									<button type="button" class="btn btn-outline-primary" id="agregar-nivel">
+									    + Agregar nivel educativo
+									</button>
+								</div>								
+								<div class="col-md-4 mb-3 form-nuevo oculto">
+									<br/>										
+				  					<label for="institucion">Institución *</label> <!-- is-invalid -->
+					      			<input type="text" class="form-control " id="institucion" placeholder="Institución" value="" name="institucion"/>
+					      			<div class="invalid-feedback">
+				        				Por favor capture el nombre de la institución
+				      				</div>
+			      				</div>	
+				      			<div class="col-md-4 mb-3 form-nuevo oculto">
+				      				<br/>		
+				      				<label for="documento">Documento obtenido*</label> <!-- is-invalid -->
+					      			<input type="text" class="form-control " id="documento" placeholder="Documento obtenido" value="" name="documento"/>
+					      			<div class="invalid-feedback">
+				        				Por favor capture el documento obtenido
+				      				</div>					    																													    			
+			    				</div>
+			    				<div class="col-md-4 mb-3 form-nuevo oculto">
+						    		<br/>
+						    		<br/>
+					    			<div class="input-group mb-3">
+							  			<div class="input-group-prepend">
+								    		<label class="input-group-text" for="catGradoEstudios">*Grado de estudios</label>
+								  		</div>
+								  		<select class="custom-select" id="catGradoEstudios" name="catGradoEstudios.id">
+											<option th:each="grado : ${gradosAcademicos}" th:value="${grado.id}" th:text="${grado.nombre}">Wireframe</option>
+								  		</select>
+									</div>
+						    	</div>
+						    	<div class="col-md-4 mb-3 oculto" id="titulo-licenciatura">
+						    	<br/>
+						    		<label for="tituloLicenciatura">*Nombre del título o especialidad</label> <!-- is-invalid -->
+							      	<input type="text" class="form-control " id="tituloLicenciatura" placeholder="Título de licenciatura" value="" name="tituloLicenciatura"/>
+							      	<div class="invalid-feedback">
+							        	Por favor captura el título de licencitura
+							      	</div>
+							    </div>						    
+							    <div class="col-md-12 mb-12 form-nuevo oculto centrado">							    	
+							    	<button type="button" class="btn btn-outline-success" id="registrar-nivel-ed">
+									    + Guardar nivel educativo
+									</button>														    		
+						    	</div>
+					    	<div th:if="${user.tblFormacionAcademicas.size() > 0}" class="col-md-12 mb-12">	
+					    		<br/>	
+								<div class="table-responsive">		
+									<table class="table table-hover">
+										<thead>
+											<tr>							
+												<th scope="col">Institución</th>
+												<th scope="col">Documento obtenido</th>
+												<th scope="col">Grado de estudios</th>
+												<th scope="col">Título</th>
+												<th scope="col" class="oculto">idGrado</th>
+												<th scope="col">Acciones</th>
+											</tr>
+										</thead>
+										<tbody id="formaciones">
+		   									<th:block th:each="formacion : ${user.tblFormacionAcademicas}">
+		      									<tr class="registro">	      					
+		      										<td class="institucion" th:text="${formacion.institucion}">...</td>
+		         									<td class="documento" th:text="${formacion.documentoObtenido}">...</td>	         						       					
+		         									<td class="grado" th:text="${formacion.catGradoEstudios.nombre}">...</td>
+		         									<td class="nombre" th:text="${formacion.nombre}">...</td>
+		         									<td class="idGrado oculto" th:text="${formacion.catGradoEstudios.id}">...</td>
+		         									<td class="boton"><button type="button" class="btn btn-outline-danger" onclick="return eliminarTr(this);">Eliminar</button></td>
+		      									</tr>      					
+		   									</th:block>
+	   									</tbody>
+									</table>
+								</div>								
 							</div>
-					    </div>
-				  	</div>
+							<input type="hidden" id="niveles-educativos" name="nivelesString"/>											    	
+				  		</div>
+				  	</div>  
+				  	<!-- ######################## FIN DATOS ACADÉMICOS  ######################## -->	
+				  	
+				  	<!-- ######################## OFERTA ACADÉMICA  ######################## -->
+					  	<div class="tab-pane fade" id="oferta" role="tabpane" aria-labelledby="oferta-tab">
+					  		<div class="form-row">					  						  			
+					  			<div class="col-md-6 mb-6" id="oferta-academica-select">
+					  				<br/>					    		
+					    			<div class="input-group mb-3">
+							  			<div class="input-group-prepend">
+								    		<label class="input-group-text" for="catOfertaAcademica">*Oferta educativa: </label>
+								  		</div>
+								  		<select class="custom-select" id="catOfertaAcademica" name="idOfertaAcademica">
+											<option 
+												th:each="oferta : ${ofertas}"
+											 	th:value="${oferta.id}" 
+											 	th:text="${oferta.nombre}"
+											 	th:selected="${user.tblSolicitudes[0].catOfertaAcademica.id} == *{oferta.id}"
+										 	>Wireframe</option>
+								  		</select>								  		
+									</div>
+						    	</div>	
+						    	<div class="col-md-12 mb-12 centrado">						    		
+				    				<button type="button" class="btn btn-outline-primary" onclick="return validarDatos();">Enviar</button>				    				
+						    	</div>				    						    	
+					  		</div>
+					  	</div>
+				  	<!-- ######################## FIN OFERTA ACADÉMICA  ######################## -->
+				  	
+				  				  				  	
+				  	<!-- ######################## ERROR CAMPOS ######################## -->				  			  	
+					  	<div class="form-row error" style="display: none;">
+					    	<div class="col-md-12 mb-3 centrado">
+					    		<div class="alert alert-danger" role="alert">
+		  							Existen errores en los campos
+								</div>
+						    </div>
+					  	</div>
+				  	<!-- ######################## FIN ERROR CAMPOS ######################## -->
 			  	</div>
 			</form>
 		</div>
+		<!-- ######################## FIN DE LA SOLICITUD DE REGISTRO ######################## -->
 	</body>
 </html>

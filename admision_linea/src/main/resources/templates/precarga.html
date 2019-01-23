@@ -11,7 +11,7 @@
 		<link rel="stylesheet" href="css/generalidades.css"/>
 	</head>
 	<body>
-		<form id="form-precarga" class="form-precarga" method="post" th:action="@{/distribuir}" >
+		<form id="form-precarga" class="form-precarga" method="post" th:action="@{/distribuir}" th:object="${user}">
 			<div class="container">
 				<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
 				<h1 class="centrado">Confirmar datos</h1>
@@ -47,7 +47,8 @@
 					<!-- ######################## DATOS PERSONALES  ######################## -->
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				  		<div class="form-row">
-					    	<div class="col-md-4 mb-3">				    		
+					    	<div class="col-md-4 mb-3">
+					    			<br/>				    		
 							    	<label for="nombre">Nombre(s)</label> <!-- is-invalid -->
 							    	<div class="alert alert-info" role="alert">
 							      		<p th:text="${user.nombre}"></p>
@@ -55,6 +56,7 @@
 						      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
+						    	<br/>
 						    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="APaterno" th:text="${user.APaterno}"></p>
@@ -62,6 +64,7 @@
 					      		</div>
 						    </div>
 						    <div class="col-md-4 mb-3">
+						    	<br/>
 						    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="AMaterno" th:text="${user.AMaterno}"></p>
@@ -132,6 +135,7 @@
 				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
 					    	<div class="col-md-6 mb-3">
+					    		<br/>
 						    	<label for="calle">Calle</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="calle" th:text="${user.tblDireccion.calle}"></p>
@@ -139,6 +143,7 @@
 					      		</div>
 						    </div>
 						    <div class="col-md-6 mb-3">
+						    	<br/>
 						    	<label for="colonia">Colonia</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="colonia" th:text="${user.tblDireccion.colonia}"></p>
@@ -202,6 +207,7 @@
 				  	<!-- ######################## DATOS ACADÉMICOS  ######################## -->
 				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
+							<br/>
 					    	<div th:if="${user.tblFormacionAcademicas.size() > 0}" class="col-md-12 mb-12">		
 								<div class="table-responsive">		
 									<table class="table table-hover">
@@ -211,24 +217,47 @@
 												<th scope="col">Documento obtenido</th>
 												<th scope="col">Grado de estudios</th>
 												<th scope="col">Título</th>
+												<th scope="col" class="oculto">idGrado</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody id="formaciones">
 		   									<th:block th:each="formacion : ${user.tblFormacionAcademicas}">
-		      									<tr>	      					
-		      										<td th:text="${formacion.institucion}">...</td>
-		         									<td th:text="${formacion.documentoObtenido}">...</td>	         						       					
-		         									<td th:text="${formacion.catGradoEstudios.nombre}">...</td>
-		         									<td th:text="${formacion.nombre}">...</td>
+		      									<tr class="registro">	      					
+		      										<td class="institucion" th:text="${formacion.institucion}">...</td>
+		         									<td class="documento" th:text="${formacion.documentoObtenido}">...</td>	         						       					
+		         									<td class="grado" th:text="${formacion.catGradoEstudios.nombre}">...</td>
+		         									<td class="nombre" th:text="${formacion.nombre}">...</td>
+		         									<td class="idGrado oculto" th:text="${formacion.catGradoEstudios.id}">...</td>
 		      									</tr>      					
 		   									</th:block>
 	   									</tbody>
 									</table>
-								</div>
-							</div>					    	
+								</div>								
+							</div>
+							<input type="hidden" id="nivelesString" name="nivelesString" value=""/>
+							<input type="hidden" id="idOfertaAcademica" th:value="${user.tblSolicitudes[0].catOfertaAcademica.id}" name="idOfertaAcademica"/>				    	
 				  		</div>
 				  	</div>  
-				  	<!-- ######################## FIN DATOS ACADÉMICOS  ######################## -->				  			  	
+				  	<!-- ######################## FIN DATOS ACADÉMICOS  ######################## -->
+				  	
+				  	<!-- ######################## OFERTA ACADÉMICA  ######################## -->
+				  	<div class="tab-pane fade" id="oferta" role="tabpanel" aria-labelledby="profile-tab">
+						<div class="form-row">
+					    	<div class="col-md-6 mb-6">									
+								<br/>			    	
+					    		<p>Oferta educativa</p>
+					    		<div class="alert alert-info" role="alert">
+							  		<p id="pais" th:text="${user.tblSolicitudes[0].catOfertaAcademica.nombre}"></p>
+						  		</div>
+				    		</div>	
+				    		<div class="col-md-12 mb-12 centrado">						    		
+		    					<button type="button" class="btn btn-outline-success" onclick="return almacenar();">Confirmar</button>				    				
+		    					<button type="button" class="btn btn-outline-danger" onclick="return editar();">Editar</button>
+					    	</div>												    	
+				  		</div>				  		
+				  		<input type="hidden" id="bandera" name="bandera" value=""/>
+				  	</div>  
+				  	<!-- ######################## FIN OFERTA ACADÉMICA  ######################## -->
 			  	</div>
 			</div>			
 		</form>

@@ -51,24 +51,23 @@ public class AdmisionController {
 	}
 	
 	@RequestMapping("/distribuir")
-	public String distribuir(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica[] academica, int bandera) {
-		String direccionar = "";
-		//user = this.asignarValores(user, direction, contacto, academica);
+	public String distribuir(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, String nivelesString, Long idOfertaAcademica, int bandera) {
+		String direccionar = "";	
+		user = this.asignarValores(user, direction, contacto, nivelesString, idOfertaAcademica);		
 		if(bandera == 0) 
-			direccionar = this.editar(model, user, direction, contacto, academica);
+			direccionar = this.editar(model, user);
 		else
-			direccionar = this.almacenar(model, user, direction, contacto, academica);
+			direccionar = this.almacenar(model, user);
 		return direccionar;
 	}
 		
-	public String editar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica[] academica) {
-		
+	public String editar(Model model, TblUsuario user) {		
 		model = this.llenarDatosFormulario(model);
 		model.addAttribute("user", user);
 		return "editar-solicitud";
-	}	
+	}
 	
-	public String almacenar(Model model, TblUsuario user, TblDireccion direction, TblContacto contacto, TblFormacionAcademica[] academica) {		
+	public String almacenar(Model model, TblUsuario user) {		
 		user.generarUsuario();
 		usuarioRepository.save(user);		
 		model.addAttribute("user", user);
@@ -84,8 +83,8 @@ public class AdmisionController {
 		direction.setCatPais(paisRepository.getOne(direction.getCatPais().getId()));		
 		user.setTblDireccion(direction);
 		user.setTblContacto(contacto);
-		user.setTblFormacionAcademicas(this.obtenerFormaciones(nivelesString));
-		System.out.println("Detente");
+		user.setTblFormacionAcademicas(this.obtenerFormaciones(nivelesString));	
+		user.getTblSolicitudes().add(solicitud);		
 		return user;
 	}
 	
@@ -104,14 +103,13 @@ public class AdmisionController {
 	
 	public Set<TblFormacionAcademica> obtenerFormaciones(String formaciones){
 		Set<TblFormacionAcademica> listaFormaciones = new HashSet<TblFormacionAcademica>(0);
-		String[] registros = formaciones.split("#");		
+		String[] registros = formaciones.split("¬");		
 		for(String registro : registros) {
 			String[] campos = registro.split(">");
 			TblFormacionAcademica formacion = new TblFormacionAcademica();							
 			formacion.setInstitucion(campos[0]);
 			formacion.setDocumentoObtenido(campos[1]);
-			Long id = Long.parseLong(campos[2]);
-			System.out.println("Detente");
+			Long id = Long.parseLong(campos[2]);			
 			CatGradoEstudios grado = gradoRepository.getOne(id);			
 			formacion.setCatGradoEstudios(grado);
 			formacion.setNombre(campos[3]);
