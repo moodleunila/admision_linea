@@ -3,35 +3,42 @@
 	<head>
 		<meta charset="UTF-8"/>
 	    <title>Universidad Latina - Educación en línea - Solicitud</title>
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>	    		
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/formulario.js"></script>
 		<link rel="stylesheet" href="css/generalidades.css"/>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-		<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>		  		
 		<script>
 			$( function() {
 				$( "#fechaNacimiento" ).datepicker({
-			  	});
-			} );
+			  	});				 
+			} );			
 		</script>
 	</head>
 	<body>
 		<div class="container">
-		
-			<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->			
-			<h1 class="centrado">Solicitud de registro</h1>
+					
+			<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
+			<div class="form-row">
+				<div class="col-md-6 mb-6 centrado">
+					<img alt="" src="imagenes/unilaenlinea.png" style="width: 17%;"/>
+				</div>
+				<div class="col-md-6 mb-6">
+					<br/>
+					<br/>
+					<h1><span class="dorado">Solicitud</span> de <span class="naranja">registro</span></h1>
+				</div>			
+			</div>
 			<hr/>
 			<form class="solicitud" id="solicitud" th:action="@{/solicitud}" method="post">
-				<!-- ######################## INSTRUCCIONES ######################## -->
+				<!-- ######################## INSTRUCCIONES ######################## -->					
 					<div class="col-md-12 mb-12">
 	  					<div class="alert alert-info" role="alert">				  				
-							<b>Instrucciones: </b> Para completar el registro realiza los siguientes pasos que aparecen a continuación: </div>
+							<b>Instrucciones: </b> Para completar el registro realiza los siguientes pasos que aparecen a continuación: 
+						</div>
 		  			</div>
 	  			<!-- ######################## FIN INSTRUCCIONES ######################## -->
 	  			
@@ -96,20 +103,23 @@
 						  	<div class="form-row">
 						    	<div class="col-md-4 mb-3">
 							    	<label for="email">*Correo electrónico</label> <!-- is-invalid -->
-							      	<input type="email" class="form-control " id="email" placeholder="Correo electrónico" value="" name="email"/>
+							    	<button type="button" class="btn btn-info btn-sm" data-toggle="popover" title="Correo electrónico" data-content="El correo electrónico servirá como nombre de usuario para acceder al sistema de inscripciones">?</button>
+							      	<input type="email" class="form-control " id="email" placeholder="Correo electrónico" value="" name="email"/>							      	
 							      	<div class="invalid-feedback">
 							        	Por favor captura un correo electrónico válido 
 							      	</div>
 							    </div>
 							    <div class="col-md-4 mb-3">
 							    	<label for="curp">*CURP</label> <!-- is-invalid -->
+							    	<a href="https://www.gob.mx/curp/" target="_blank"><button type="button" class="btn btn-info btn-sm">Consulta tu CURP</button></a>
 							      	<input type="text" class="form-control " id="curp" placeholder="Clave Única de Registro Poblacional" value="" name="curp"/>
 							      	<div class="invalid-feedback">
 							        	Por favor captura la CURP
 							      	</div>
 							    </div>
-							    <div class="col-md-4 mb-3">
+							    <div class="col-md-4 mb-3">							    	
 							    	<label for="rfc">*RFC</label> <!-- is-invalid -->
+							    	<a href="https://www.mi-rfc.com.mx/consulta-rfc-homoclave" target="_blank"><button type="button" class="btn btn-info btn-sm">Consulta tu RFC</button></a>
 							      	<input type="text" class="form-control " id="rfc" placeholder="Registro Federal de Contribuyentes" value="" name="rfc"/>
 							      	<div class="invalid-feedback">
 							        	Por favor captura el RFC
@@ -311,7 +321,7 @@
 									</div>
 						    	</div>	
 						    	<div class="col-md-12 mb-12 centrado">						    		
-				    				<button type="button" class="btn btn-outline-primary" onclick="return validar();">Enviar</button>				    				
+				    				<button type="button" class="btn btn-outline-success" onclick="return validar();">Enviar</button>				    				
 						    	</div>				    						    	
 					  		</div>
 					  	</div>

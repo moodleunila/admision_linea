@@ -3,10 +3,10 @@
 	<head>
 		<meta charset="UTF-8"/>
 	    <title>Universidad Latina - Educación en línea - Solicitud</title>
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>	    		
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="js/precarga.js"></script>
 		<link rel="stylesheet" href="css/generalidades.css"/>
 	</head>
@@ -14,7 +14,16 @@
 		<form id="form-precarga" class="form-precarga" method="post" th:action="@{/distribuir}" th:object="${user}">
 			<div class="container">
 				<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
-				<h1 class="centrado">Confirmar datos</h1>
+				<div class="form-row">
+					<div class="col-md-6 mb-6 centrado">
+						<img alt="" src="imagenes/unilaenlinea.png" style="width: 17%;"/>
+					</div>
+					<div class="col-md-6 mb-6">
+						<br/>
+						<br/>
+						<h1><span class="dorado">Confirmar</span><span class="naranja"> datos</span></h1>
+					</div>			
+				</div>				
 				<hr/>
 				<!-- ######################## INSTRUCCIONES ######################## -->
 					<div class="col-md-12 mb-12">
@@ -47,24 +56,21 @@
 					<!-- ######################## DATOS PERSONALES  ######################## -->
 					<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 				  		<div class="form-row">
-					    	<div class="col-md-4 mb-3">
-					    			<br/>				    		
+					    	<div class="col-md-4 mb-3">					    							    		
 							    	<label for="nombre">Nombre(s)</label> <!-- is-invalid -->
 							    	<div class="alert alert-info" role="alert">
 							      		<p th:text="${user.nombre}"></p>
 							      		<input type="hidden" id="nombre-val" th:value="${user.nombre}" name="nombre"/>
 						      		</div>
 						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<br/>
+						    <div class="col-md-4 mb-3">						    	
 						    	<label for="APaterno">Apellido paterno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="APaterno" th:text="${user.APaterno}"></p>
 						      		<input type="hidden" id="APaterno-val" th:value="${user.APaterno}" name="APaterno"/>
 					      		</div>
 						    </div>
-						    <div class="col-md-4 mb-3">
-						    	<br/>
+						    <div class="col-md-4 mb-3">						    	
 						    	<label for="AMaterno">Apellido Materno</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="AMaterno" th:text="${user.AMaterno}"></p>
@@ -134,16 +140,14 @@
 			  		<!-- ######################## DIRECCIÓN  ######################## -->
 				  	<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 						<div class="form-row">
-					    	<div class="col-md-6 mb-3">
-					    		<br/>
+					    	<div class="col-md-6 mb-3">					    		
 						    	<label for="calle">Calle</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="calle" th:text="${user.tblDireccion.calle}"></p>
 						      		<input type="hidden" id="calle-val" th:value="${user.tblDireccion.calle}" name="calle"/>
 					      		</div>
 						    </div>
-						    <div class="col-md-6 mb-3">
-						    	<br/>
+						    <div class="col-md-6 mb-3">						    	
 						    	<label for="colonia">Colonia</label> <!-- is-invalid -->
 						    	<div class="alert alert-info" role="alert">
 						      		<p id="colonia" th:text="${user.tblDireccion.colonia}"></p>
@@ -206,8 +210,7 @@
 				  	
 				  	<!-- ######################## DATOS ACADÉMICOS  ######################## -->
 				  	<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="profile-tab">
-						<div class="form-row">
-							<br/>
+						<div class="form-row">							
 					    	<div th:if="${user.tblFormacionAcademicas.size() > 0}" class="col-md-12 mb-12">		
 								<div class="table-responsive">		
 									<table class="table table-hover">
@@ -253,6 +256,13 @@
 				    		<div class="col-md-12 mb-12 centrado">						    		
 		    					<button type="button" class="btn btn-outline-success" onclick="return almacenar();">Confirmar</button>				    				
 		    					<button type="button" class="btn btn-outline-danger" onclick="return editar();">Editar</button>
+		    					<br/>
+		    					<br/>
+		    					<div id="spinner" class="oculto">
+			    					<div class="spinner-border text-success" role="status">
+	  									<span class="sr-only">Loading...</span>
+									</div>
+								</div>
 					    	</div>												    	
 				  		</div>				  		
 				  		<input type="hidden" id="bandera" name="bandera" value=""/>

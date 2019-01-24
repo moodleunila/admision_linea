@@ -24,6 +24,7 @@ function editar(){
 function almacenar(){
 	$("#bandera").attr("value","1");
 	asignarFormaciones();
+	$("#spinner").show();
 	$("#form-precarga").submit();
 }                        
 

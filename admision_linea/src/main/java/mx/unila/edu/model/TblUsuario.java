@@ -286,8 +286,8 @@ public class TblUsuario implements java.io.Serializable {
 	}
 
 	public void generarUsuario() {
-		this.username = this.rfc;
+		this.username = this.getTblContacto().getEmail();
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();		
-		this.password = passwordEncoder.encode(this.rfc);
+		this.password = passwordEncoder.encode(this.curp);
 	}
 }

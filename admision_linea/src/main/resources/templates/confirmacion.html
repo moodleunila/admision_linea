@@ -3,17 +3,42 @@
 	<head>
 		<meta charset="UTF-8"/>
 	    <title>Universidad Latina - Educación en línea - Confirmación</title>
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous"/>	    		
 	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-		<script type="text/javascript" src="js/precarga.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="css/generalidades.css"/>
 	</head>
 	<body>
-		<h2>Se ha almacenado la solicitud con éxito</h2>
-		<form th:action="@{/}" method="post" name="regresar" id="regresar">
-			<input type="submit" name="Regresar" value="Regresar"/>
-		</form>
+		<div class="container">	
+			<!-- ######################## INICIO DE LA SOLICITUD DEL REGISTRO ######################## -->
+			<div class="form-row">
+				<div class="col-md-6 mb-6 centrado">
+					<img alt="" src="imagenes/unilaenlinea.png" style="width: 17%;"/>
+				</div>
+				<div class="col-md-6 mb-6">
+					<br/>
+					<br/>
+					<h1><span class="dorado">Confirmación</span><span class="naranja"> de registro</span></h1>
+				</div>
+				<hr/>			
+			</div>
+			<div class="form-row">						
+				<div class="col-md-12 mb-12">
+					<hr/>
+					<div class="alert alert-success" role="alert">
+	  					<h4 class="alert-heading">Registro completado!</h4>
+	  					<p>Los datos que has capturado han sido almacenados con éxito, tu estatus de solicitud es el inicial, para poder completar tu proceso de incorporación a la UNILA accede con tu usuario (correo electrónico registrado) y contraseña (CURP registrada) al siguiente <a href="http://save.unila.edu.mx">sitio</a>.</p>
+	  					<hr/>
+	  					<p class="mb-0">Para cualquier duda o comentario ponte en contacto con nosotros con el siguiente correo electrónico <a href="mailto:moodle@unila.edu.mx">moodle@unila.edu.mx</a></p>
+					</div>
+	 			</div>
+	 			<div class="col-md-12 mb-12 centrado">
+					<form th:action="@{/}" method="post" name="regresar" id="regresar">
+						<input type="submit" class="btn btn-outline-success centrado" name="Regresar" value="Regresar"/>
+					</form>
+				</div>
+			</div>			
+		</div>
 	</body>
 </html>
