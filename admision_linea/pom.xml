@@ -16,6 +16,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
+		<start-class>mx.unila.edu.AdmisionLineaApplication</start-class>
 	</properties>
 
 	<dependencies>
@@ -44,4 +45,20 @@
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 	</dependencies>	
+	
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+          		<groupId>org.apache.maven.plugins</groupId>
+          		<artifactId>maven-surefire-plugin</artifactId>
+          		<configuration>
+        			<testFailureIgnore>true</testFailureIgnore>
+    			</configuration>
+       		</plugin>
+		</plugins>
+	</build>
 </project>

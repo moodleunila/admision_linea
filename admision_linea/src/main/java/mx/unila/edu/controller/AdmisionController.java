@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -67,7 +69,25 @@ public class AdmisionController {
 		else
 			direccionar = this.almacenar(model, user);
 		return direccionar;
+	}	
+	
+	@RequestMapping("/login")
+	public String login() {
+		return "login";
 	}
+	
+	@RequestMapping("/loginerror")
+    public String loginerror() {
+    	return "loginerror";
+    }
+	
+	@RequestMapping("/home")
+    public String home(Model model, HttpServletRequest request) {
+    	
+    	model.addAttribute("admin", request.isUserInRole("ADMIN"));
+    	
+    	return "home";
+    }
 		
 	public String editar(Model model, TblUsuario user) {		
 		model = this.llenarDatosFormulario(model);

@@ -14,6 +14,10 @@ import mx.unila.edu.model.CatNivelEducativo;
 import mx.unila.edu.model.CatOfertaAcademica;
 import mx.unila.edu.model.CatPais;
 import mx.unila.edu.model.CatRol;
+import mx.unila.edu.model.RelUsuarioRol;
+import mx.unila.edu.model.TblContacto;
+import mx.unila.edu.model.TblDireccion;
+import mx.unila.edu.model.TblUsuario;
 import mx.unila.edu.repositories.CatEstadoRepository;
 import mx.unila.edu.repositories.CatEstadoSolicitudRepository;
 import mx.unila.edu.repositories.CatGradoEstudiosRepository;
@@ -22,6 +26,8 @@ import mx.unila.edu.repositories.CatNivelEducativoRepository;
 import mx.unila.edu.repositories.CatOfertaAcademicaRepository;
 import mx.unila.edu.repositories.CatPaisRepository;
 import mx.unila.edu.repositories.CatRolRepository;
+import mx.unila.edu.repositories.RelUsuarioRolRepository;
+import mx.unila.edu.repositories.TblUsuarioRepository;
 
 @Controller
 public class CatalogosController {
@@ -34,6 +40,8 @@ public class CatalogosController {
 	@Autowired CatOfertaAcademicaRepository catOfertaAcademicaRepository;
 	@Autowired CatModalidadRepository catModalidadRepository;
 	@Autowired CatEstadoSolicitudRepository catEstadoSolicitudRepository;
+	@Autowired TblUsuarioRepository usuarioRepository;
+	@Autowired RelUsuarioRolRepository relRolRepository;
 	
 	@PostConstruct
 	public void init() {
@@ -45,6 +53,7 @@ public class CatalogosController {
 		this.llenarModalidades();
 		this.llenarOfertaAcademica();	
 		this.llenarEstadosSolicitud();
+		this.crearUsuarioAdministrador();
 	}
 	
 	private void llenarFormularioEstados() {
@@ -99,12 +108,12 @@ public class CatalogosController {
 	
 	private void llenarCatalogoRoles() {
 		List<CatRol> roles = new ArrayList<CatRol>(0);
-		roles.add(new CatRol("Administrador", new Date(), true));
-		roles.add(new CatRol("Promotor", new Date(), true));
-		roles.add(new CatRol("Ejecutivo", new Date(), true));
-		roles.add(new CatRol("Solicitante", new Date(), true));//Estatus inicial de proceso Solicitud y carga de archivos
-		roles.add(new CatRol("Aspirante", new Date(), true));//Estatus secundario, una vez validados los documentos
-		roles.add(new CatRol("alumno", new Date(), true));//Estatus tercero, una vez hecho el pago		
+		roles.add(new CatRol("ROLE_Administrador", new Date(), true));
+		roles.add(new CatRol("ROLE_Promotor", new Date(), true));
+		roles.add(new CatRol("ROLE_Ejecutivo", new Date(), true));
+		roles.add(new CatRol("ROLE_Solicitante", new Date(), true));//Estatus inicial de proceso Solicitud y carga de archivos
+		roles.add(new CatRol("ROLE_Aspirante", new Date(), true));//Estatus secundario, una vez validados los documentos
+		roles.add(new CatRol("ROLE_alumno", new Date(), true));//Estatus tercero, una vez hecho el pago		
 		rolRepository.save(roles);
 	}
 	
@@ -340,5 +349,14 @@ public class CatalogosController {
 		estadosSolicitud.add(new CatEstadoSolicitud("Etapa donde el usuario ya ha realizado la agregación de los documentos y el ejecutivo de la uiversidad designado realiza la validación y autenticidad", new Date(), "Validación de documentos"));
 		estadosSolicitud.add(new CatEstadoSolicitud("El usuario ya ha completado el proceso y se procede a darle acceso a la Universidad", new Date(), "Incorporación"));
 		catEstadoSolicitudRepository.save(estadosSolicitud);
+	}
+	
+	private void crearUsuarioAdministrador() {
+		TblDireccion direccion = new TblDireccion("Tarango L1 M15", "San clmente Norte", "01740", estadoRepository.findOne(1L), paisRepository.getOne(1L),"",null);
+		TblContacto contacto = new TblContacto("moodle@unila.edu.mx", "69929713", "5548132150");		
+		TblUsuario user = new TblUsuario("Jorge", "Gonzalez", "Herandez", "CURPJORGE", "RFCJORGE", "Masculino", new Date(), true, direccion, contacto, "admin", "PedroPiedra09*"); 
+		RelUsuarioRol rol = new RelUsuarioRol(rolRepository.getOne(1L), user, true);
+		usuarioRepository.save(user);
+		relRolRepository.save(rol);
 	}
 }

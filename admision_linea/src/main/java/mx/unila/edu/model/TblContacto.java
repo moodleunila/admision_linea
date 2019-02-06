@@ -29,18 +29,16 @@ public class TblContacto implements java.io.Serializable{
 		super();
 	}
 
-	public TblContacto(Long id, String email, String telefonoLocal, String telefonoCelular) {
-		super();
-		this.id = id;
+	public TblContacto(String email, String telefonoLocal, String telefonoCelular) {
+		super();		
 		this.email = email;
 		this.telefonoLocal = telefonoLocal;
 		this.telefonoCelular = telefonoCelular;
 	}
 
-	public TblContacto(Long id, String email, String telefonoLocal, String telefonoCelular,
+	public TblContacto(String email, String telefonoLocal, String telefonoCelular,
 			TblUsuario tblUsuario) {
-		super();
-		this.id = id;
+		super();		
 		this.email = email;
 		this.telefonoLocal = telefonoLocal;
 		this.telefonoCelular = telefonoCelular;

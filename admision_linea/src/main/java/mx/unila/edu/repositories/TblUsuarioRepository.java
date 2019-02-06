@@ -7,5 +7,7 @@ import mx.unila.edu.model.TblUsuario;
 public interface TblUsuarioRepository extends JpaRepository<TblUsuario, Long>{
 	
 	TblUsuario findByUsername(String username);
+	
+	TblUsuario findByNombre(String nombre);
 
 }

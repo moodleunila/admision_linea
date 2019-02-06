@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "rel_usuario_rol", catalog = "admision_ead")
@@ -47,7 +49,7 @@ public class RelUsuarioRol implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "fk_rol", nullable = false)
 	public CatRol getCatRol() {
 		return this.catRol;
@@ -57,6 +59,7 @@ public class RelUsuarioRol implements java.io.Serializable {
 		this.catRol = catRol;
 	}
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_usuario", nullable = false)
 	public TblUsuario getTblUsuario() {

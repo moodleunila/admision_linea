@@ -3,7 +3,6 @@ package mx.unila.edu.model;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,8 +16,9 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+
 
 @Entity
 @Table(name = "tbl_usuario", catalog = "admision_ead")
@@ -61,11 +61,9 @@ public class TblUsuario implements java.io.Serializable {
 		super();
 	}	
 
-	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
-			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			Set<TblFormacionAcademica> tblFormacionAcademicas, String username, String password) {
-		super();
-		this.id = id;
+	public TblUsuario(String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
+			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto, String username, String password) {
+		super();		
 		this.nombre = nombre;
 		this.APaterno = aPaterno;
 		this.AMaterno = aMaterno;
@@ -75,17 +73,15 @@ public class TblUsuario implements java.io.Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 		this.activo = activo;
 		this.tblDireccion = tblDireccion;
-		this.tblContacto = tblcontacto;
-		this.tblFormacionAcademicas = tblFormacionAcademicas;
+		this.tblContacto = tblcontacto;		
 		this.username = username;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 
-	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
+	public TblUsuario(String nombre, String aPaterno, String aMaterno, String curp, String rfc, String genero,
 			Date fechaNacimiento, boolean activo, TblDireccion tblDireccion, TblContacto tblcontacto,
-			Set<TblFormacionAcademica> tblFormacionAcademicas , String username, String password, Set<RelUsuarioRol> relUsuarioRols) {
-		super();
-		this.id = id;
+			String username, String password, Set<RelUsuarioRol> relUsuarioRols) {
+		super();		
 		this.nombre = nombre;
 		this.APaterno = aPaterno;
 		this.AMaterno = aMaterno;
@@ -95,24 +91,22 @@ public class TblUsuario implements java.io.Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 		this.activo = activo;
 		this.tblDireccion = tblDireccion;
-		this.tblContacto = tblcontacto;
-		this.tblFormacionAcademicas = tblFormacionAcademicas;
+		this.tblContacto = tblcontacto;		
 		this.relUsuarioRols = relUsuarioRols;
 		this.username = username;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 	}
 	
-	public TblUsuario(Long id, String nombre, String aPaterno, String aMaterno, String username, String password,
+	public TblUsuario(String nombre, String aPaterno, String aMaterno, String username, String password,
 			String curp, String rfc, String genero, Date fechaNacimiento, boolean activo, TblDireccion tblDireccion,
 			TblContacto tblContacto, Set<TblFormacionAcademica> tblFormacionAcademicas,
 			Set<TblSolicitud> tblSolicitudes, Set<RelUsuarioRol> relUsuarioRols) {
-		super();
-		this.id = id;
+		super();		
 		this.nombre = nombre;
 		APaterno = aPaterno;
 		AMaterno = aMaterno;
 		this.username = username;
-		this.password = password;
+		this.password = new BCryptPasswordEncoder().encode(password);
 		this.curp = curp;
 		this.rfc = rfc;
 		this.genero = genero;
@@ -175,7 +169,8 @@ public class TblUsuario implements java.io.Serializable {
 		this.tblSolicitudes = tblSolicitudes;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "tblUsuario")
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "tblUsuario")
 	public Set<RelUsuarioRol> getRelUsuarioRols() {
 		return this.relUsuarioRols;
 	}

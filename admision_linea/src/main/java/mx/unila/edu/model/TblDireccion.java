@@ -38,10 +38,9 @@ public class TblDireccion implements java.io.Serializable {
 	private TblUsuario tblUsuario;
 	
 
-	public TblDireccion(Long id, String calle, String numeroInterno, String numeroExterno, String colonia,
+	public TblDireccion(String calle, String numeroInterno, String numeroExterno, String colonia,
 			String codigoPostal, CatEstado catEstado, CatPais catPais, String ciudadInternacional) {
-		super();
-		this.id = id;
+		super();		
 		this.calle = calle;
 		this.numeroInterno = numeroInterno;
 		this.numeroExterno = numeroExterno;
@@ -52,10 +51,9 @@ public class TblDireccion implements java.io.Serializable {
 		this.ciudadInternacional = ciudadInternacional;
 	}
 
-	public TblDireccion(Long id, String calle, String colonia, String codigoPostal, CatEstado catEstado,
+	public TblDireccion(String calle, String colonia, String codigoPostal, CatEstado catEstado,
 			CatPais catPais, String ciudadInternacional, TblUsuario tblUsuario) {
-		super();
-		this.id = id;
+		super();		
 		this.calle = calle;
 		this.colonia = colonia;
 		this.codigoPostal = codigoPostal;
